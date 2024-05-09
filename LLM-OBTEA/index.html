@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <link rel="icon" href="images/render/robot.png" type="image/gif" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>LLM-OBTEA</title>
+
+  <link rel="stylesheet" href="css/index.css"/>
+  <!-- <link rel="stylesheet" href="css/bulma.min.css">
+  <link rel="stylesheet" href="css/bulma-carousel.min.css"> -->
+  <!-- <link rel="stylesheet" href="css/bulma-slider.min.css"> -->
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet"> <!-- range slider -->
+
+  <!-- font awesome style -->
+  <!-- <link href="css/font-awesome.min.css" rel="stylesheet" /> -->
+  <link rel="stylesheet" href="css/fontawesome.all.min.css">
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+  <script defer src="js/fontawesome.all.min.js"></script>
+  <script src="js/index.js"></script>
+  <script defer src="js/fontawesome.all.min.js"></script>
+  <style>
+      @media (min-width: 1200px) {
+        .container {
+          max-width: 1920px;
+        }
+        .container1 {
+          max-width: 1170px;
+        }
+        .container2 {
+          /* max-width: 1920px; */
+          padding-right: 25px;
+          padding-left: 25px;
+        }
+      }
+
+  </style>
+
+
+</head>
+
+<body>
+
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+
+      <div class="header_bottom">
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container ">
+            <a class="navbar-brand" href="index.html">
+              <span>
+                <!-- MO-VLN -->
+                LLM-OBTEA
+              </span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class=""> </span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ">
+                <li class="nav-item active">
+                  <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <!-- end header section -->
+    <!-- slider section -->
+    <style>
+      .slider_section img {
+        width:100%;
+      }
+      .small-image {
+        max-width: 75%; 
+        height: auto; 
+      }
+      .small-video {
+        height: 800px;
+        width: auto; 
+      }
+      .biaoti{
+        padding-top: 20px;
+        text-align: center;
+        margin: 0 20px;
+      }
+      .biaoti h3{
+        font-size: 40px;
+        font-weight: bolder;
+      }
+      .biaoti p{
+        margin-top: 64px;
+        font-weight: bold;
+      }
+      .column {
+        display: block;
+        flex-basis: 0;
+        flex-grow: 1;
+        flex-shrink: 1;
+        padding: 0.75rem;
+      }
+      .has-text-centered {
+        text-align: center!important;
+      }
+      /**, ::after, ::before {*/
+      /*  box-sizing: inherit;*/
+      /*}*/
+
+      .button.is-static {
+        background-color: #f5f5f5;
+        border-color: #dbdbdb;
+        color: #7a7a7a;
+        box-shadow: none;
+        pointer-events: none
+      }
+
+      .button.is-rounded {
+        border-radius: 290486px;
+        padding-left: calc(1em + .25em);
+        padding-right: calc(1em + .25em)
+      }
+      .button.is-normal {
+        font-size: 1rem;
+      }
+      .button.is-dark {
+        background-color: #363636;
+        border-color: transparent;
+        color: #fff;
+      }
+      /*.buttons {*/
+      /*  align-items: center;*/
+      /*  display: flex;*/
+      /*  flex-wrap: wrap;*/
+      /*  justify-content: flex-start*/
+      /*}*/
+      .link-block a {
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+      .button {
+        background-color: #fff;
+        border-color: #dbdbdb;
+        border-width: 1px;
+        color: #363636;
+        cursor: pointer;
+        justify-content: center;
+        padding-bottom: calc(0.5em - 1px);
+        padding-left: 1em;
+        padding-right: 1em;
+        padding-top: calc(0.5em - 1px);
+        text-align: center;
+        white-space: nowrap;
+      }
+      .button .icon:first-child:not(:last-child) {
+        margin-left: calc(-0.5em - 1px);
+        margin-right: 0.25em;
+      }
+      .button .icon, .button .icon.is-large, .button .icon.is-medium, .button .icon.is-small {
+        height: 1.5em;
+        width: 1.5em;
+      }
+      .icon {
+        align-items: center;
+        display: inline-flex;
+        justify-content: center;
+        height: 1.5rem;
+        width: 1.5rem;
+      }
+      svg:not(:root).svg-inline--fa {
+        overflow: visible;
+      }
+
+
+       .svg-inline--fa.fa-w-12 {
+         width: 0.75em;
+       }
+
+       .svg-inline--fa {
+         display: inline-block;
+         font-size: inherit;
+         height: 1em;
+         overflow: visible;
+         vertical-align: -0.125em;
+       }
+
+    </style>
+    <div class="biaoti">
+      <br>
+      <br>
+
+      <h3>
+
+
+        <!--        <span class="highlight">RM-PRT</span>: Realistic <span class="highlight">R</span>obotic-->
+        <!--        <span class="highlight">M</span>anipulation Simulator and <br/>Benchmark with -->
+        <!--        <span class="highlight">P</span>rogressive <span class="highlight">R</span>easoning <span class="highlight">T</span>asks-->
+        Integrating Intent Understanding and Optimal Behavior Planning for<br />
+        Behavior Tree Generation from Human instructions
+
+      </h3>
+
+<!--       <p>Xiwen Liang<sup>1</sup><sup>*</sup>, Liang Ma<sup>1</sup><sup>*</sup>, Shanshan Guo<sup>2</sup>, Jianhua Han<sup>3</sup>, Hang Xu<sup>3</sup>, <br/>Shikui Ma<sup>4</sup>, Xiaodan Liang<sup>1</sup><sup>↑</sup></p>
+      <div><sup>1</sup>Shenzhen Campus of Sun Yat-Sen University, <sup>2</sup>Northeastern University,<br/> <sup>3</sup>Huawei Noah's Ark Lab, <sup>4</sup>Dataa Robotics</div> 
+     <p>Pengzhen Ren<sup>1</sup>, Kaidong Zhang<sup>1</sup>, Hetao Zheng<sup>1</sup>, Zixuan Li<sup>1</sup>, Yuhang Wen<sup>1</sup>, <br/>Fengda Zhu<sup>2</sup>, Mas Ma<sup>3</sup>, Xiaodan Liang<sup>1,4</sup><sup>*</sup></p>
+      <div><sup>1</sup>Shenzhen Campus of Sun Yat-Sen University, <sup>2</sup>Monash University,<br/> <sup>3</sup>Dataa Robotics, <sup>4</sup>MBZUAI</div> -->
+
+
+      <br>
+      <div class="column has-text-centered">
+        <div style="width:1200px; margin:0 auto; text-align=left; font-size: 130%;">
+          <span>Robots executing tasks following human instructions in domestic or industrial environments essentially require both adaptability and reliability. Behavior Trees (BTs) emerge as an appropriate control architecture for these scenarios due to their modularity and reactivity. Existing BT generation methods, however, either do not involve interpreting natural language or cannot theoretically guarantee the BTs' success. This paper proposes a two-stage framework for BT generation, which first employs large language models (LLMs) to interpret goals from high-level instructions, then constructs an efficient goal-specific BT through the Optimal Behavior Tree Expansion Algorithm (OBTEA). We represent goals as well-formed formulas in first-order logic, effectively bridging intent understanding and optimal behavior planning. Experiments in hospitality industry settings validate the proficiency of LLMs in producing grammatically correct and accurately interpreted goals, demonstrate OBTEA's superiority over the baseline BT Expansion algorithm in various metrics, and finally confirm the practical deployability of our framework.</span>
+        </div>
+      </div>
+      <br>
+
+      <!--
+      <div class="column has-text-centered">
+        <div class="publication-links">
+          <span class="link-block">
+            <a href="https://arxiv.org/abs/2306.11335"
+               class="external-link button is-normal is-rounded is-dark">
+               <span class="icon">
+                <i class="fas fa-file-pdf"></i>
+              </span>
+              <span>arXiv</span>
+            </a>
+          </span>
+      -->
+
+          <!-- Code Link. -->
+          <span class="link-block">
+                <a href="https://github.com/DIDS-EI/LLM-OBTEA" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <svg class="svg-inline--fa fa-github fa-w-16" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg=""><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg><!-- <i class="fab fa-github"></i> Font Awesome fontawesome.com -->
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+          <!-- Simulator Link. -->
+
+<!--           <span class="link-block">
+                <a href="https://github.com/Necolizer/RM-PRT/tree/main/Env" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <svg class="svg-inline--fa fa-file-download fa-w-12" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-download" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm76.45 211.36l-96.42 95.7c-6.65 6.61-17.39 6.61-24.04 0l-96.42-95.7C73.42 337.29 80.54 320 94.82 320H160v-80c0-8.84 7.16-16 16-16h32c8.84 0 16 7.16 16 16v80h65.18c14.28 0 21.4 17.29 11.27 27.36zM377 105L279.1 7c-4.5-4.5-10.6-7-17-7H256v128h128v-6.1c0-6.3-2.5-12.4-7-16.9z"></path></svg>
+                  </span>
+                  <span>Simulator</span>
+                </a>
+              </span> -->
+          
+
+         </div>
+
+      </div>
+    </div>
+
+    <section class="slider_section ">
+      <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+
+          <div class="carousel-item active">
+            <div class="container">
+              
+                <div style="text-align: center">
+                <img class="small-image" src="images/render/development.png" alt="" style="transform:scale(1) ">
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </section>
+
+
+    
+  </div>
+
+
+
+  <section class="product_section layout_padding layout_padding">
+    <div class="container">
+     
+<!-- 
+      <div class="heading_container heading_center">
+        <h2>
+          Simulator
+        </h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-8 col-lg-2">
+        <div class="box">
+          <div style="text-align: center">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-8 col-lg-4">
+        <div class="box">
+          <div style="text-align: center">
+            <h3 style="margin-top: 10px">Video</h3>
+            <iframe width="640" height="480" src="https://www.youtube.com/embed/k6V9LHUi2hw?rel=0&amp;showinfo=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="box">
+          <div style="text-align: center">
+            <h3 style="margin-top: 10px">Scenes</h3>
+              <img width="100%" height="480" src="images/render/1234.jpg" alt="">
+             
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+
+    <div class="row">
+      <div class="col-sm-8 col-lg-2">
+        <div class="box">
+          <div style="text-align: center">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Pipeline
+        </h2>
+      </div>
+    </div>
+    <div class="container">
+        <div style="text-align: center">
+          <img class="small-image" src="images/render/framework.png" alt="" >
+      </div>
+    </div>
+      
+</section>
+
+
+
+
+
+
+
+
+  <section class="client_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Demo
+        </h2>
+      </div>
+    </div>
+    <section class="about_section"><br></section>
+    
+    <section class="about_section">
+      <div id="carouselExample2Controls" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="container-fluid  ">
+            <div class="row">
+              <div class="col-md-4 ml-auto">
+                <div class="detail-box pr-md-3">
+                  <p style="font-size: 24px;">
+                    Easy Level: <br>
+                    It's quite toasty inside, <br> could you please lower the air conditioning temperature?
+                    <br><br>
+                    Goal:<br> Low(ACTemperature)
+                  </p>
+                  <img src="images/tree_easy.svg" alt="" width="800">
+                </div>
+              </div>
+              <div class="col-md-6 px-10">
+                <div class="img-box">
+                  <video  width="100%" height="640" poster="" id="steve" autoplay controls muted loop playsinline>
+                    <source src="videos/demo_easy.mp4"
+                            type="video/mp4">
+                  </video>  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="carousel-item">
+          <div class="container-fluid  ">
+            <div class="row">
+              <div class="col-md-4 ml-auto">
+                <div class="detail-box pr-md-3">
+                  <p style="font-size: 24px;">
+                    Medium Level: <br>
+                    Could you please not put the carton drink <br> on table one and close the curtain?
+                    <br><br>
+                    Goal:<br> ~On(Softdrink,Table1) & Closed(Curtain)
+                  </p>
+                  <img src="images/tree_medium.svg" alt="" width="820">
+                </div>
+              </div>
+              <div class="col-md-6 px-10">
+                <div class="img-box">
+                  <video  width="100%" height="640" poster="" id="steve" autoplay controls muted loop playsinline>
+                    <source src="videos/demo_medium.mp4"
+                            type="video/mp4">
+                  </video>  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="carousel-item">
+          <div class="container-fluid  ">
+            <div class="row">
+              <div class="col-md-4 ml-auto">
+                <div class="detail-box pr-md-3">
+                  <p style="font-size: 24px;">
+                    Hard Level: <br>
+                    Could you please turn on the coffee machine at the bar, and <br> make sure the floor is clean or the tube light is off? <br> I enjoy my coffee in a cozy environment.
+                    <br><br>
+                    Goal:<br> On(Coffee,Bar) & (IsClean(Floor) | ~Active(TubeLight))
+                  </p>
+                  <img src="images/tree_hard.svg" alt="" width="820">
+                  <!-- <img src="images/tree_hard.png" alt="" width="920" height="300"> -->
+                </div>
+              </div>
+              <div class="col-md-6 px-10">
+                <div class="img-box">
+                  <video  width="100%" height="640" poster="" id="steve" autoplay controls muted loop playsinline>
+                    <source src="videos/demo_hard.mp4"
+                            type="video/mp4">
+                  </video>  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="carousel_btn-box">
+          <a class="carousel-control-prev" href="#carouselExample2Controls" role="button" data-slide="prev" >
+            <span>
+              <i class="fa fa-angle-left" aria-hidden="true"></i>
+            </span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExample2Controls" role="button" data-slide="next">
+            <span>
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+     
+    </section> 
+
+    <!-- <section class="about_section"><br></section>
+
+    <section class="about_section">
+      <div class="container-fluid  ">
+        <div class="row">
+          
+          <div class="col-md-2 ml-auto">
+            <div class="detail-box pr-md-0">
+              <p style="font-size: 24px;">
+                Level 3: <br>
+                  Hey Robot, could you grasp me the brown bottle of Coffee?
+                
+              </p>
+            </div>
+          </div>
+          <div class="col-md-3 px-2">
+            <div class="img-box">
+              <video  width="100%" height="640" poster="" id="steve" autoplay controls muted loop playsinline>
+                <source src="videos/Level3.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="col-md-2 ml-auto">
+            <div class="detail-box pr-md-0">
+              <p style="font-size: 24px;">
+                Level 4: <br>
+                Robot, could you please fetch the white cylindrical tube to me?  It's in front of you, on the right.  I need it to brush my teeth.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-3 px-2">
+            <div class="img-box">
+              <video  width="100%" height="640" poster="" id="steve" autoplay controls muted loop playsinline>
+                <source src="videos/Level4.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="about_section"><br></section> -->
+    
+    <!-- <section class="about_section">
+      <div class="container-fluid  ">
+        <div class="row">
+          <div class="col-md-6 ml-auto">
+            <div class="detail-box pr-md-0">
+              <p style="font-size: 24px;">
+                Level 3: <br>
+                  Robot, please grab the small, white Teacup with a curved shape, I need it for a hot cup of tea.
+                
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4 px-0">
+            <div class="img-box">
+              <img src="images/render/level3.png" alt="">
+              </video> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="about_section"><br></section>
+    <section class="about_section">
+      <div class="container-fluid  ">
+        <div class="row">
+          <div class="col-md-6 ml-auto">
+            <div class="detail-box pr-md-0">
+              <p style="font-size: 24px;">
+                Level 4: <br>
+                  Robot, could you please grab the blue and white squeeze tube on the front-right of the GlueStick? It's a creamy snack that I need for my smoothie recipe.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4 px-0">
+            <div class="img-box">
+              <img src="images/render/level4.png" alt="">
+              </video> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+
+<!-- 
+    <div>
+      <br>
+      <br>
+    </div>
+    <div class="client_container ">
+      <div id="carouselExample2Controls" class="carousel slide" data-ride="carousel">
+        <div class="heading_container heading_center">
+          <h2>
+            Complex Tasks for Grasping and Navigation
+          </h2>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+              <div class="detail-box">
+                <div style="text-align: center" class="img-box">
+<!--                   <video  class="small-video" poster="" id="steve" autoplay controls muted loop playsinline>
+                    <source src="videos/1.mp4"
+                            type="video/mp4">
+                  </video> 
+                  <div style="text-align: center">
+                    <h4>
+                      Example: Please take the glass and put it on the marble table.
+                    </h4>
+                  </div>
+                </div>
+              </div>
+          </div>
+          
+
+
+        </div>
+      </div>
+    </div>
+  </section> --> -->
+
+
+<!-- 
+  
+  <section class="client_section layout_padding" style="background-color:  #3965b5;">
+  </section>
+
+  <section class="product_section layout_padding">
+  <div style="text-align: center">
+   
+    <div class="heading_container heading_center">
+      <h2>
+        Real Machine
+      </h2>
+    </div>
+    <div class="row">
+      <div class="col-sm-8 col-lg-7">
+        <div class="box">
+      <iframe width="640" height="480" src="videos/3.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      </div>
+
+      <div class="col-sm-8 col-lg-3">
+        <div class="box">
+      <iframe width="640" height="480" src="videos/5.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+  </section>
+
+  <section class="product_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Scenes Being Built
+        </h2>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-lg-4">
+          <div class="box">
+            <div class="img-box">
+              <img src="images/render/5.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="box">
+            <div class="img-box">
+              <img src="images/render/6.png" alt="">
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="box">
+            <div class="img-box">
+              <img src="images/render/7.png" alt="">
+            </div>
+
+          </div>
+        </div>
+      </div>
+      
+      <div class="heading_container heading_center">
+        <h4>
+          Retirement Home
+        </h4>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-lg-4">
+          <div class="box">
+            <div class="img-box">
+              <img src="images/render/8.png" alt="">
+            </div>
+
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="box">
+            <div class="img-box">
+              <img src="images/render/9.png" alt="">
+            </div>
+
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="box">
+            <div class="img-box">
+              <img src="images/render/10.png" alt="">
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="heading_container heading_center">
+        <h4>
+          Cafe
+        </h4>
+      </div>
+      <div class="heading_container heading_center">
+        <h4>
+          RM-PRT has Retirement Home & Cafe scenes and we are now working on their APIs.
+        </h4>
+      </div>
+      
+    </div>
+  </section> -->
+
+
+
+
+  <!-- jQery -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <!-- bootstrap js -->
+  <script src="js/bootstrap.js"></script>
+  <!-- custom js -->
+  <script src="js/custom.js"></script>
+
+  <script>
+    $(function () {
+      $('#carouselExample2Controls').carousel({
+
+        interval: 8000
+
+      })
+    })
+  </script>
+</body>
+
+</html>
