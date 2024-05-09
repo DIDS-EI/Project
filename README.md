@@ -1,2 +1,1 @@
-# Project
-Project homepages for the Embodied Intelligence Group of NUDT
+# Project homepages for the Embodied Intelligence Group of NUDT
