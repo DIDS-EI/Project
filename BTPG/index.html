@@ -598,9 +598,9 @@
                 <div class="detail-box pr-md-3">
                   <p style="font-size: 24px;">
                     Medium Level: 
-                    Place the chicken and cutlets in the stove, <br> close the stove, switch it on, and place the clothes <br> pile on the bathroom counter.
+                    Place the chicken and poundcake inside the stove,<br> close the stove door, and turn it on.
                     <br><br>
-                    Goal:<br> IsIn(chicken,stove) & IsIn(cutlets,stove) & IsClose(stove) & IsSwitchedOn(stove) & IsOn(clothespile,bathroomcounter)
+                    Goal:<br> IsIn(chicken,stove) & IsIn(poundcake,stove)  & IsSwitchedOn(stove) & IsClose(stove)
                   </p>
                   <img src="images/vh_tree_medium.svg" alt="" width="820">
                 </div>
@@ -625,18 +625,20 @@
                 <div class="detail-box pr-md-3">
                   <p style="font-size: 24px;">
                     Hard Level: <br>
-                    Could you please turn on the coffee machine at the bar, and <br> make sure the floor is clean or the tube light is off? <br> I enjoy my coffee in a cozy environment.
+                    Ensure the plate is in the dishwasher, <br> the dishwasher is closed, the clothes are on the pile on the bed, <br> and the bread slice is on the kitchen table.
                     <br><br>
-                    Goal:<br> On(Coffee,Bar) & (IsClean(Floor) | ~Active(TubeLight))
+                    Goal:<br> In(plate, dishwasher) & Close(dishwasher) & <br> 
+                    On(clothespile, bed) & On(breadslice, kitchentable)
+
                   </p>
-                  <img src="images/tree_hard.svg" alt="" width="820">
+                  <img src="images/vh_tree_hard.svg" alt="" width="820">
                   <!-- <img src="images/tree_hard.png" alt="" width="920" height="300"> -->
                 </div>
               </div>
               <div class="col-md-6 px-10">
                 <div class="img-box">
                   <video  width="100%" height="640" poster="" id="steve" autoplay controls muted loop playsinline>
-                    <source src="videos/demo_hard.mp4"
+                    <source src="videos/vh_demo_hard.mp4"
                             type="video/mp4">
                   </video>  
                 </div>
