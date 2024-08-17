@@ -296,15 +296,26 @@
     <section class="slider_section ">
       <div id="customCarousel1" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
-
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Framework
+        </h2>
+      </div>
+    </div>
           <div class="carousel-item active">
             <div class="container">
               
                 <div style="text-align: center">
-                <img class="small-image" src="images/render/development.png" alt="" style="transform:scale(1) ">
+                <img class="small-image" src="images/render/framework.png" alt="" style="transform:scale(0.9) ">
               </div>
+
+                <div class="" style="width:1200px; margin:0 auto; text-align:left; font-size:150%; margin-top:0px;">
+    <span>Overview of the three parts of BTPG. (1) problem formalization with object categorization. (2) BT simulation platform including of four scenarios and four BT planning algorithms. (3) BT planning benchmark including the dataset generators and various evaluation metrics.</span>
+  </div>
             </div>
           </div>
+
 
 
         </div>
@@ -319,74 +330,6 @@
 
   <section class="product_section layout_padding layout_padding">
     <div class="container">
-     
-<!-- 
-      <div class="heading_container heading_center">
-        <h2>
-          Simulator
-        </h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-8 col-lg-2">
-        <div class="box">
-          <div style="text-align: center">
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-8 col-lg-4">
-        <div class="box">
-          <div style="text-align: center">
-            <h3 style="margin-top: 10px">Video</h3>
-            <iframe width="640" height="480" src="https://www.youtube.com/embed/k6V9LHUi2hw?rel=0&amp;showinfo=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-lg-4">
-        <div class="box">
-          <div style="text-align: center">
-            <h3 style="margin-top: 10px">Scenes</h3>
-              <img width="100%" height="480" src="images/render/1234.jpg" alt="">
-             
-          </div>
-        </div>
-      </div>
-    </div> -->
-
-
-    <div class="row">
-      <div class="col-sm-8 col-lg-2">
-        <div class="box">
-          <div style="text-align: center">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <div class="heading_container heading_center">
-        <h2>
-          Framework
-        </h2>
-      </div>
-    </div>
-    <div class="container">
-        <div style="text-align: center">
-          <img class="small-image" src="images/render/framework.png" alt="" >
-      </div>
-    </div>
-
-      <div class="" style="width:1200px; margin:0 auto; text-align:left; font-size:150%; margin-top:20px;">
-    <span>Overview of the three parts of BTPG. (1) problem formalization with object categorization. (2) BT simulation platform including of four scenarios and four BT planning algorithms. (3) BT planning benchmark including the dataset generators and various evaluation metrics.</span>
-  </div>
-
-
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
 
 
 
@@ -407,11 +350,11 @@
     </div>
     <div class="container">
         <div style="text-align: center">
-          <img class="small-image" src="images/render/interface.png" alt="" >
+          <img class="small-image" src="images/render/interface.png"  alt="" style="transform:scale(0.9) ">
       </div>
     </div>
 
-  <div class="" style="width:1200px; margin:0 auto; text-align:left; font-size:150%; margin-top:20px;">
+  <div class="" style="width:1200px; margin:0 auto; text-align:left; font-size:150%; margin-top:0px;">
     <span>Interfaces of the BTPG: Each environment has an interface for converting the environment's perception into a symbolic representation (currently, we only support STRIPS representation). The environment state, along with the user-provided goal, is then input into BT planning algorithms, which output a BT represented in BTML. We can then read the BTML and create a BT for task execution. Each environment has its own behavior library, where execution interfaces are used to control robots in different environments.</span>
   </div>
 
@@ -448,9 +391,10 @@
                 <div class="detail-box pr-md-3">
                   <p style="font-size: 24px;">
                     Easy Level: <br>
+                    <strong>Human Instruction:</strong>  <br>
                     It's quite toasty inside, <br> could you please lower the air conditioning temperature?
                     <br><br>
-                    Goal:<br> Low(ACTemperature)
+                    <strong>Goal for BT Planning:</strong><br> Low(ACTemperature)
                   </p>
                   <img src="images/tree_easy.svg" alt="" width="800">
                 </div>
@@ -475,9 +419,10 @@
                 <div class="detail-box pr-md-3">
                   <p style="font-size: 24px;">
                     Medium Level: <br>
+                    <strong>Human Instruction:</strong> <br>
                     Could you please not put the carton drink <br> on table one and close the curtain?
                     <br><br>
-                    Goal:<br> ~On(Softdrink,Table1) & Closed(Curtain)
+                    <strong>Goal for BT Planning:</strong><br> ~On(Softdrink,Table1) & Closed(Curtain)
                   </p>
                   <img src="images/tree_medium.svg" alt="" width="820">
                 </div>
@@ -502,9 +447,10 @@
                 <div class="detail-box pr-md-3">
                   <p style="font-size: 24px;">
                     Hard Level: <br>
+                    <strong>Human Instruction:</strong>  <br>
                     Could you please turn on the coffee machine at the bar, and <br> make sure the floor is clean or the tube light is off? <br> I enjoy my coffee in a cozy environment.
                     <br><br>
-                    Goal:<br> On(Coffee,Bar) & (IsClean(Floor) | ~Active(TubeLight))
+                    <strong>Goal for BT Planning:</strong><br> On(Coffee,Bar) & (IsClean(Floor) | ~Active(TubeLight))
                   </p>
                   <img src="images/tree_hard.svg" alt="" width="820">
                   <!-- <img src="images/tree_hard.png" alt="" width="920" height="300"> -->
@@ -571,9 +517,11 @@
                 <div class="detail-box pr-md-3">
                   <p style="font-size: 24px;">
                     Easy Level: <br>
+                    <strong>Human Instruction:</strong> <br>
                     Place the bananas in the fridge, <br> and ensure that the fridge door is closed.
                     <br><br>
-                    Goal:<br> IsIn(bananas,fridge) & IsClose(fridge)
+                    <strong>Goal for BT Planning:</strong><br> IsIn(bananas,fridge) & IsClose(fridge)
+
                   </p>
                   <img src="images/vh_tree_easy.svg" alt="" width="800">
                 </div>
@@ -598,9 +546,11 @@
                 <div class="detail-box pr-md-3">
                   <p style="font-size: 24px;">
                     Medium Level: 
+                    <strong>Human Instruction:</strong>  <br>
                     Place the chicken and poundcake inside the stove,<br> close the stove door, and turn it on.
                     <br><br>
-                    Goal:<br> IsIn(chicken,stove) & IsIn(poundcake,stove)  & IsSwitchedOn(stove) & IsClose(stove)
+                    <strong>Goal for BT Planning:</strong><br> IsIn(chicken,stove) & IsIn(poundcake,stove)  <br>
+                    & IsSwitchedOn(stove) & IsClose(stove)
                   </p>
                   <img src="images/vh_tree_medium.svg" alt="" width="820">
                 </div>
@@ -625,9 +575,10 @@
                 <div class="detail-box pr-md-3">
                   <p style="font-size: 24px;">
                     Hard Level: <br>
+                    <strong>Human Instruction:</strong> <br>
                     Ensure the plate is in the dishwasher, <br> the dishwasher is closed, the clothes are on the pile on the bed, <br> and the bread slice is on the kitchen table.
                     <br><br>
-                    Goal:<br> In(plate, dishwasher) & Close(dishwasher) & <br> 
+                    <strong>Goal for BT Planning:</strong><br> In(plate, dishwasher) & Close(dishwasher) & <br> 
                     On(clothespile, bed) & On(breadslice, kitchentable)
 
                   </p>
@@ -667,240 +618,6 @@
     </section> 
 
 
-
-
-
-
-    <!-- <section class="about_section"><br></section>
-
-    <section class="about_section">
-      <div class="container-fluid  ">
-        <div class="row">
-          
-          <div class="col-md-2 ml-auto">
-            <div class="detail-box pr-md-0">
-              <p style="font-size: 24px;">
-                Level 3: <br>
-                  Hey Robot, could you grasp me the brown bottle of Coffee?
-                
-              </p>
-            </div>
-          </div>
-          <div class="col-md-3 px-2">
-            <div class="img-box">
-              <video  width="100%" height="640" poster="" id="steve" autoplay controls muted loop playsinline>
-                <source src="videos/Level3.mp4"
-                        type="video/mp4">
-              </video>
-            </div>
-          </div>
-          <div class="col-md-2 ml-auto">
-            <div class="detail-box pr-md-0">
-              <p style="font-size: 24px;">
-                Level 4: <br>
-                Robot, could you please fetch the white cylindrical tube to me?  It's in front of you, on the right.  I need it to brush my teeth.
-              </p>
-            </div>
-          </div>
-          <div class="col-md-3 px-2">
-            <div class="img-box">
-              <video  width="100%" height="640" poster="" id="steve" autoplay controls muted loop playsinline>
-                <source src="videos/Level4.mp4"
-                        type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="about_section"><br></section> -->
-    
-    <!-- <section class="about_section">
-      <div class="container-fluid  ">
-        <div class="row">
-          <div class="col-md-6 ml-auto">
-            <div class="detail-box pr-md-0">
-              <p style="font-size: 24px;">
-                Level 3: <br>
-                  Robot, please grab the small, white Teacup with a curved shape, I need it for a hot cup of tea.
-                
-              </p>
-            </div>
-          </div>
-          <div class="col-md-4 px-0">
-            <div class="img-box">
-              <img src="images/render/level3.png" alt="">
-              </video> 
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="about_section"><br></section>
-    <section class="about_section">
-      <div class="container-fluid  ">
-        <div class="row">
-          <div class="col-md-6 ml-auto">
-            <div class="detail-box pr-md-0">
-              <p style="font-size: 24px;">
-                Level 4: <br>
-                  Robot, could you please grab the blue and white squeeze tube on the front-right of the GlueStick? It's a creamy snack that I need for my smoothie recipe.
-              </p>
-            </div>
-          </div>
-          <div class="col-md-4 px-0">
-            <div class="img-box">
-              <img src="images/render/level4.png" alt="">
-              </video> 
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
-
-
-
-<!--     <div>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-    </div>
-    <div class="client_container ">
-      <div id="carouselExample2Controls" class="carousel slide" data-ride="carousel">
-        <div class="heading_container heading_center">
-      <h2>
-        A Day at the Café <br>
-        ——Exhibited at ChinaSoft 2023
-      </h2>
-      <br>
-      <br>
-        </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-              <div class="detail-box">
-                <div style="text-align: center" class="img-box">
-                   <video  class="small-video" poster="" id="steve" autoplay controls muted loop playsinline>
-                    <source src="videos/A Day at the Café.mp4"
-                            type="video/mp4">
-                  
-                </div>
-              </div>
-          </div>
-          
-
-
-        </div>
-      </div>
-    </div>
-  </section>  -->
-
-
-<!-- 
-  
-  <section class="client_section layout_padding" style="background-color:  #3965b5;">
-  </section>
-
-  <section class="product_section layout_padding">
-  <div style="text-align: center">
-   
-    <div class="heading_container heading_center">
-      <h2>
-        Real Machine
-      </h2>
-    </div>
-    <div class="row">
-      <div class="col-sm-8 col-lg-7">
-        <div class="box">
-      <iframe width="640" height="480" src="videos/3.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-      </div>
-
-      <div class="col-sm-8 col-lg-3">
-        <div class="box">
-      <iframe width="640" height="480" src="videos/5.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-    </div>
-  </div>
-  </section>
-
-  <section class="product_section layout_padding">
-    <div class="container">
-      <div class="heading_container heading_center">
-        <h2>
-          Scenes Being Built
-        </h2>
-      </div>
-      <div class="row">
-        <div class="col-sm-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/render/5.png" alt="">
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/render/6.png" alt="">
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/render/7.png" alt="">
-            </div>
-
-          </div>
-        </div>
-      </div>
-      
-      <div class="heading_container heading_center">
-        <h4>
-          Retirement Home
-        </h4>
-      </div>
-      <div class="row">
-        <div class="col-sm-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/render/8.png" alt="">
-            </div>
-
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/render/9.png" alt="">
-            </div>
-
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/render/10.png" alt="">
-            </div>
-
-          </div>
-        </div>
-      </div>
-      <div class="heading_container heading_center">
-        <h4>
-          Cafe
-        </h4>
-      </div>
-      <div class="heading_container heading_center">
-        <h4>
-          RM-PRT has Retirement Home & Cafe scenes and we are now working on their APIs.
-        </h4>
-      </div>
-      
-    </div>
-  </section> -->
 
 
 
