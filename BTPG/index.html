@@ -21,7 +21,7 @@
   <!-- <link rel="stylesheet" href="css/bulma-slider.min.css"> -->
 
   <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link rel="stylesheet" href="css/bootstrap.css" />
 
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet"> <!-- range slider -->
@@ -31,12 +31,20 @@
   <link rel="stylesheet" href="css/fontawesome.all.min.css">
 
   <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
   <!-- responsive style -->
-  <link href="css/responsive.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  
+  <!-- 添加轮播图所需的CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+  
   <script defer src="js/fontawesome.all.min.js"></script>
   <script src="js/index.js"></script>
   <script defer src="js/fontawesome.all.min.js"></script>
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/custom.js"></script>
   <style>
       @media (min-width: 1200px) {
         .container {
@@ -385,106 +393,100 @@
     
     <section class="about_section">
       <div id="carouselExample2Controls" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="container-fluid  ">
-            <div class="row">
-              <div class="col-md-4 ml-auto">
-                <div class="detail-box pr-md-3">
-                  <p style="font-size: 36px; text-align: center;">
-                    <strong>Easy Level </strong>
-                  </p>
-                  <p style="font-size: 24px;">
-                    <strong>Human Instruction:</strong>  <br>
-                    It's quite toasty inside, <br> could you please lower the air conditioning temperature?
-                    <br><br>
-                    <strong>Goal for BT Planning:</strong><br> Low(ACTemperature)
-                    <br><br>
-                    <strong>Planned BT: </strong>
-                  </p>
-                  <img src="images/tree_easy.svg" alt="" width="800">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-4 ml-auto">
+                  <div class="detail-box pr-md-3">
+                    <p style="font-size: 36px; text-align: center;">
+                      <strong>Easy Level </strong>
+                    </p>
+                    <p style="font-size: 24px;">
+                      <strong>Human Instruction:</strong> <br>
+                      It's quite toasty inside, <br> could you please lower the air conditioning temperature?
+                      <br><br>
+                      <strong>Goal for BT Planning:</strong><br> Low(ACTemperature)
+                      <br><br>
+                      <strong>Planned BT: </strong>
+                    </p>
+                    <img src="images/tree_easy.svg" alt="" width="800">
+                  </div>
+                </div>
+                <div class="col-md-6 px-10">
+                  <div class="img-box">
+                    <video width="100%" height="640" poster="" id="steve" autoplay controls muted loop playsinline>
+                      <source src="videos/demo_easy.mp4" type="video/mp4">
+                    </video>  
+                  </div>
                 </div>
               </div>
-              <div class="col-md-6 px-10">
-                <div class="img-box">
-                  <video  width="100%" height="640" poster="" id="steve" autoplay controls muted loop playsinline>
-                    <source src="videos/demo_easy.mp4"
-                            type="video/mp4">
-                  </video>  
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-4 ml-auto">
+                  <div class="detail-box pr-md-3">
+                    <p style="font-size: 36px; text-align: center;">
+                      <strong>Medium Level </strong>
+                    </p>
+                    <p style="font-size: 24px;">
+                      <strong>Human Instruction:</strong> <br>
+                      Could you please not put the carton drink <br> on table one and close the curtain?
+                      <br><br>
+                      <strong>Goal for BT Planning:</strong><br> ~On(Softdrink,Table1) & Closed(Curtain)
+                      <br><br>
+                      <strong>Planned BT: </strong>
+                    </p>
+                    <img src="images/tree_medium.svg" alt="" width="820">
+                  </div>
+                </div>
+                <div class="col-md-6 px-10">
+                  <div class="img-box">
+                    <video width="100%" height="640" poster="" id="steve" autoplay controls muted loop playsinline>
+                      <source src="videos/demo_medium.mp4" type="video/mp4">
+                    </video>  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-4 ml-auto">
+                  <div class="detail-box pr-md-3">
+                    <p style="font-size: 36px; text-align: center;">
+                      <strong>Hard Level </strong>
+                    </p>
+                    <p style="font-size: 24px;">
+                      <strong>Human Instruction:</strong> <br>
+                      Could you please turn on the coffee machine at the bar, and <br> make sure the floor is clean or the tube light is off? <br> I enjoy my coffee in a cozy environment.
+                      <br><br>
+                      <strong>Goal for BT Planning:</strong><br> On(Coffee,Bar) & (IsClean(Floor) | ~Active(TubeLight))
+                      <br><br>
+                      <strong>Planned BT: </strong>
+                    </p>
+                    <img src="images/tree_hard.svg" alt="" width="820">
+                  </div>
+                </div>
+                <div class="col-md-6 px-10">
+                  <div class="img-box">
+                    <video width="100%" height="640" poster="" id="steve" autoplay controls muted loop playsinline>
+                      <source src="videos/demo_hard.mp4" type="video/mp4">
+                    </video>  
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-
-        <div class="carousel-item">
-          <div class="container-fluid  ">
-            <div class="row">
-              <div class="col-md-4 ml-auto">
-                <div class="detail-box pr-md-3">
-                  <p style="font-size: 36px; text-align: center;">
-                    <strong>Medium Level </strong>
-                  </p>
-                  <p style="font-size: 24px;">
-                    <strong>Human Instruction:</strong> <br>
-                    Could you please not put the carton drink <br> on table one and close the curtain?
-                    <br><br>
-                    <strong>Goal for BT Planning:</strong><br> ~On(Softdrink,Table1) & Closed(Curtain)
-                    <br><br>
-                    <strong>Planned BT: </strong>
-                  </p>
-                  <img src="images/tree_medium.svg" alt="" width="820">
-                </div>
-              </div>
-              <div class="col-md-6 px-10">
-                <div class="img-box">
-                  <video  width="100%" height="640" poster="" id="steve" autoplay controls muted loop playsinline>
-                    <source src="videos/demo_medium.mp4"
-                            type="video/mp4">
-                  </video>  
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="carousel-item">
-          <div class="container-fluid  ">
-            <div class="row">
-              <div class="col-md-4 ml-auto">
-                <div class="detail-box pr-md-3">
-                  <p style="font-size: 36px; text-align: center;">
-                    <strong>Hard Level </strong>
-                  </p>
-                  <p style="font-size: 24px;">
-                    <strong>Human Instruction:</strong>  <br>
-                    Could you please turn on the coffee machine at the bar, and <br> make sure the floor is clean or the tube light is off? <br> I enjoy my coffee in a cozy environment.
-                    <br><br>
-                    <strong>Goal for BT Planning:</strong><br> On(Coffee,Bar) & (IsClean(Floor) | ~Active(TubeLight))
-                    <br><br>
-                    <strong>Planned BT: </strong>
-                  </p>
-                  <img src="images/tree_hard.svg" alt="" width="820">
-                  <!-- <img src="images/tree_hard.png" alt="" width="920" height="300"> -->
-                </div>
-              </div>
-              <div class="col-md-6 px-10">
-                <div class="img-box">
-                  <video  width="100%" height="640" poster="" id="steve" autoplay controls muted loop playsinline>
-                    <source src="videos/demo_hard.mp4"
-                            type="video/mp4">
-                  </video>  
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
 
         <div class="carousel_btn-box">
-          <a class="carousel-control-prev" href="#carouselExample2Controls" role="button" data-slide="prev" >
+          <a class="carousel-control-prev" href="#carouselExample2Controls" role="button" data-slide="prev">
             <span>
               <i class="fa fa-angle-left" aria-hidden="true"></i>
             </span>
@@ -498,18 +500,8 @@
           </a>
         </div>
       </div>
-     
-    </section> 
-
-
-
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-
+    </section>
+  </section>
 
   <section class="client_section layout_padding">
     <div class="container">
@@ -523,110 +515,102 @@
     
     <section class="about_section">
       <div id="carouselExample3Controls" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="container-fluid  ">
-            <div class="row">
-              <div class="col-md-4 ml-auto">
-                <div class="detail-box pr-md-3">
-                  <p style="font-size: 36px; text-align: center;">
-                    <strong>Easy Level </strong>
-                  </p>
-                  <p style="font-size: 24px;">
-                    <strong>Human Instruction:</strong> <br>
-                    Place the bananas in the fridge, <br> and ensure that the fridge door is closed.
-                    <br><br>
-                    <strong>Goal for BT Planning:</strong><br> IsIn(bananas,fridge) & IsClose(fridge)
-                    <br><br>
-                    <strong>Planned BT: </strong>
-
-                  </p>
-                  <img src="images/vh_tree_easy.svg" alt="" width="800">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-4 ml-auto">
+                  <div class="detail-box pr-md-3">
+                    <p style="font-size: 36px; text-align: center;">
+                      <strong>Easy Level </strong>
+                    </p>
+                    <p style="font-size: 24px;">
+                      <strong>Human Instruction:</strong> <br>
+                      Place the bananas in the fridge, <br> and ensure that the fridge door is closed.
+                      <br><br>
+                      <strong>Goal for BT Planning:</strong><br> IsIn(bananas,fridge) & IsClose(fridge)
+                      <br><br>
+                      <strong>Planned BT: </strong>
+                    </p>
+                    <img src="images/vh_tree_easy.svg" alt="" width="800">
+                  </div>
+                </div>
+                <div class="col-md-6 px-10">
+                  <div class="img-box">
+                    <video width="100%" height="640" poster="" id="steve" autoplay controls muted loop playsinline>
+                      <source src="videos/vh_demo_easy.mp4" type="video/mp4">
+                    </video>  
+                  </div>
                 </div>
               </div>
-              <div class="col-md-6 px-10">
-                <div class="img-box">
-                  <video  width="100%" height="640" poster="" id="steve" autoplay controls muted loop playsinline>
-                    <source src="videos/vh_demo_easy.mp4"
-                            type="video/mp4">
-                  </video>  
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-4 ml-auto">
+                  <div class="detail-box pr-md-3">
+                    <p style="font-size: 36px; text-align: center;">
+                      <strong>Medium Level </strong>
+                    </p>
+                    <p style="font-size: 24px;">
+                      <strong>Human Instruction:</strong> <br>
+                      Place the chicken and poundcake inside the stove,<br> close the stove door, and turn it on.
+                      <br><br>
+                      <strong>Goal for BT Planning:</strong><br> IsIn(chicken,stove) & IsIn(poundcake,stove) <br>
+                      & IsSwitchedOn(stove) & IsClose(stove)
+                      <br><br>
+                      <strong>Planned BT: </strong>
+                    </p>
+                    <img src="images/vh_tree_medium.svg" alt="" width="820">
+                  </div>
+                </div>
+                <div class="col-md-6 px-10">
+                  <div class="img-box">
+                    <video width="100%" height="640" poster="" id="steve" autoplay controls muted loop playsinline>
+                      <source src="videos/vh_demo_medium.mp4" type="video/mp4">
+                    </video>  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-4 ml-auto">
+                  <div class="detail-box pr-md-3">
+                    <p style="font-size: 36px; text-align: center;">
+                      <strong>Hard Level </strong>
+                    </p>
+                    <p style="font-size: 24px;">
+                      <strong>Human Instruction:</strong> <br>
+                      Check if the condiment shaker is in the kitchen cabinet.<br> If it is, then confirm whether the clothespile is on the bed,<br> the book is on the desk, and the kitchen cabinet is nearby. <br>Otherwise, just confirm that the condiment shaker is in the kitchen cabinet.<br>
+                      <br><br>
+                      <strong>Goal for BT Planning:</strong><br> (IsOn(clothespile,bed) & IsOn(book,desk) <br> & IsClose(kitchencabinet))  |  IsIn(condimentshaker,kitchencabinet) <br>  & IsIn(condimentshaker,kitchencabinet) <br> 
+                      On(clothespile, bed) & On(breadslice, kitchentable)
+                      <br><br>
+                      <strong>Planned BT: </strong>
+                    </p>
+                    <img src="images/vh_tree_hard.svg" alt="" width="820">
+                  </div>
+                </div>
+                <div class="col-md-6 px-10">
+                  <div class="img-box">
+                    <video width="100%" height="640" poster="" id="steve" autoplay controls muted loop playsinline>
+                      <source src="videos/vh_demo_hard.mp4" type="video/mp4">
+                    </video>  
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-
-        <div class="carousel-item">
-          <div class="container-fluid  ">
-            <div class="row">
-              <div class="col-md-4 ml-auto">
-                <div class="detail-box pr-md-3">
-                  <p style="font-size: 36px; text-align: center;">
-                    <strong>Medium Level </strong>
-                  </p>
-                  <p style="font-size: 24px;">
-                    <strong>Human Instruction:</strong>  <br>
-                    Place the chicken and poundcake inside the stove,<br> close the stove door, and turn it on.
-                    <br><br>
-                    <strong>Goal for BT Planning:</strong><br> IsIn(chicken,stove) & IsIn(poundcake,stove)  <br>
-                    & IsSwitchedOn(stove) & IsClose(stove)
-                    <br><br>
-                    <strong>Planned BT: </strong>
-                  </p>
-                  <img src="images/vh_tree_medium.svg" alt="" width="820">
-                </div>
-              </div>
-              <div class="col-md-6 px-10">
-                <div class="img-box">
-                  <video  width="100%" height="640" poster="" id="steve" autoplay controls muted loop playsinline>
-                    <source src="videos/vh_demo_medium.mp4"
-                            type="video/mp4">
-                  </video>  
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="carousel-item">
-          <div class="container-fluid  ">
-            <div class="row">
-              <div class="col-md-4 ml-auto">
-                <div class="detail-box pr-md-3">
-                  <p style="font-size: 36px; text-align: center;">
-                    <strong>Hard Level </strong>
-                  </p>
-                  <p style="font-size: 24px;">
-                    <strong>Human Instruction:</strong> <br>
-                    Check if the condiment shaker is in the kitchen cabinet.<br> If it is, then confirm whether the clothespile is on the bed,<br> the book is on the desk, and the kitchen cabinet is nearby. <br>Otherwise, just confirm that the condiment shaker is in the kitchen cabinet.<br>
-                    <br><br>
-                    <strong>Goal for BT Planning:</strong><br> (IsOn(clothespile,bed) & IsOn(book,desk) <br> & IsClose(kitchencabinet))  |  IsIn(condimentshaker,kitchencabinet) <br>  & IsIn(condimentshaker,kitchencabinet) <br> 
-                    On(clothespile, bed) & On(breadslice, kitchentable)
-                    <br><br>
-                    <strong>Planned BT: </strong>
-
-                  </p>
-                  <img src="images/vh_tree_hard.svg" alt="" width="820">
-                  <!-- <img src="images/tree_hard.png" alt="" width="920" height="300"> -->
-                </div>
-              </div>
-              <div class="col-md-6 px-10">
-                <div class="img-box">
-                  <video  width="100%" height="640" poster="" id="steve" autoplay controls muted loop playsinline>
-                    <source src="videos/vh_demo_hard.mp4"
-                            type="video/mp4">
-                  </video>  
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
 
         <div class="carousel_btn-box">
-          <a class="carousel-control-prev" href="#carouselExample3Controls" role="button" data-slide="prev" >
+          <a class="carousel-control-prev" href="#carouselExample3Controls" role="button" data-slide="prev">
             <span>
               <i class="fa fa-angle-left" aria-hidden="true"></i>
             </span>
@@ -640,66 +624,25 @@
           </a>
         </div>
       </div>
-     
-    </section> 
-
-
-
-    <!-- <div>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-    </div>
-    <div class="client_container ">
-      <div id="carouselExample2Controls" class="carousel slide" data-ride="carousel">
-        <div class="heading_container heading_center">
-      <h2>
-        A Day at the Café <br>
-        ——Exhibited at ChinaSoft 2023
-      </h2>
-      <br>
-      <br>
-        </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-              <div class="detail-box">
-                <div style="text-align: center" class="img-box">
-                   <video  class="small-video" poster="" id="steve" autoplay controls muted loop playsinline>
-                    <source src="videos/A Day at the Café (english).mp4"
-                            type="video/mp4">
-                  </video> 
-                </div>
-              </div>
-          </div>
-          
-
-
-        </div>
-      </div>
-    </div> -->
-  </section> 
+    </section>
+  </section>
 
 
 
 
   <!-- jQery -->
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <!-- bootstrap js -->
-  <script src="js/bootstrap.js"></script>
-  <!-- custom js -->
-  <script src="js/custom.js"></script>
-
   <script>
     $(function () {
-      $('#carouselExample2Controls').carousel({
-
-        interval: 8000
-
-      })
-    })
+      // 初始化所有轮播图
+      $('.carousel').carousel({
+        interval: 8000,
+        pause: 'hover',
+        wrap: true
+      });
+      
+      // 确保轮播图在页面加载后正确显示
+      $('.carousel').carousel('cycle');
+    });
   </script>
 </body>
 
