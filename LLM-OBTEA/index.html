@@ -1,741 +1,431 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <!-- Basic -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Mobile Metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Site Metas -->
-  <link rel="icon" href="images/render/robot.png" type="image/gif" />
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
-
-  <title>LLM-OBTEA</title>
-
-  <link rel="stylesheet" href="css/index.css"/>
-  <!-- <link rel="stylesheet" href="css/bulma.min.css">
-  <link rel="stylesheet" href="css/bulma-carousel.min.css"> -->
-  <!-- <link rel="stylesheet" href="css/bulma-slider.min.css"> -->
-
-  <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-
-  <!-- fonts style -->
-  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet"> <!-- range slider -->
-
-  <!-- font awesome style -->
-  <!-- <link href="css/font-awesome.min.css" rel="stylesheet" /> -->
-  <link rel="stylesheet" href="css/fontawesome.all.min.css">
-
-  <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet" />
-  <!-- responsive style -->
-  <link href="css/responsive.css" rel="stylesheet" />
-  <script defer src="js/fontawesome.all.min.js"></script>
-  <script src="js/index.js"></script>
-  <script defer src="js/fontawesome.all.min.js"></script>
-  <style>
-      @media (min-width: 1200px) {
-        .container {
-          max-width: 1920px;
-        }
-        .container1 {
-          max-width: 1170px;
-        }
-        .container2 {
-          /* max-width: 1920px; */
-          padding-right: 25px;
-          padding-left: 25px;
-        }
-      }
-
-  </style>
-
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Robowaiter — Integrating Intent Understanding and Optimal Behavior Planning for Behavior Tree Generation from Human Instructions." />
+  <meta name="author" content="Xinglin Chen, Yishuai Cai, Yunxin Mao, Minglong Li, Wenjing Yang, Weixia Xu, Ji Wang" />
+  <link rel="icon" href="images/render/robot.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <title>Robowaiter · Behavior Tree Generation from Human Instructions</title>
 </head>
-
 <body>
-
-  <div class="hero_area">
-    <!-- header section strats -->
-    <header class="header_section">
-
-      <div class="header_bottom">
-        <div class="container-fluid">
-          <nav class="navbar navbar-expand-lg custom_nav-container ">
-            <a class="navbar-brand" href="index.html">
-              <span>
-                LLM-OBTEA
-              </span>
-            </a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class=""> </span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav ">
-                <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </header>
-    <!-- end header section -->
-    <!-- slider section -->
-    <style>
-      .slider_section img {
-        width:100%;
-      }
-      .small-image {
-        max-width: 75%; 
-        height: auto; 
-      }
-      .small-video {
-        height: 800px;
-        width: auto; 
-      }
-      .biaoti{
-        padding-top: 20px;
-        text-align: center;
-        margin: 0 20px;
-      }
-      .biaoti h3{
-        font-size: 40px;
-        font-weight: bolder;
-      }
-      .biaoti p{
-        margin-top: 64px;
-        font-weight: bold;
-      }
-      .column {
-        display: block;
-        flex-basis: 0;
-        flex-grow: 1;
-        flex-shrink: 1;
-        padding: 0.75rem;
-      }
-      .has-text-centered {
-        text-align: center!important;
-      }
-      /**, ::after, ::before {*/
-      /*  box-sizing: inherit;*/
-      /*}*/
-
-      .button.is-static {
-        background-color: #f5f5f5;
-        border-color: #dbdbdb;
-        color: #7a7a7a;
-        box-shadow: none;
-        pointer-events: none
-      }
-
-      .button.is-rounded {
-        border-radius: 290486px;
-        padding-left: calc(1em + .25em);
-        padding-right: calc(1em + .25em)
-      }
-      .button.is-normal {
-        font-size: 1rem;
-      }
-      .button.is-dark {
-        background-color: #363636;
-        border-color: transparent;
-        color: #fff;
-      }
-      /*.buttons {*/
-      /*  align-items: center;*/
-      /*  display: flex;*/
-      /*  flex-wrap: wrap;*/
-      /*  justify-content: flex-start*/
-      /*}*/
-      .link-block a {
-        margin-top: 5px;
-        margin-bottom: 5px;
-      }
-      .button {
-        background-color: #fff;
-        border-color: #dbdbdb;
-        border-width: 1px;
-        color: #363636;
-        cursor: pointer;
-        justify-content: center;
-        padding-bottom: calc(0.5em - 1px);
-        padding-left: 1em;
-        padding-right: 1em;
-        padding-top: calc(0.5em - 1px);
-        text-align: center;
-        white-space: nowrap;
-      }
-      .button .icon:first-child:not(:last-child) {
-        margin-left: calc(-0.5em - 1px);
-        margin-right: 0.25em;
-      }
-      .button .icon, .button .icon.is-large, .button .icon.is-medium, .button .icon.is-small {
-        height: 1.5em;
-        width: 1.5em;
-      }
-      .icon {
-        align-items: center;
-        display: inline-flex;
-        justify-content: center;
-        height: 1.5rem;
-        width: 1.5rem;
-      }
-      svg:not(:root).svg-inline--fa {
-        overflow: visible;
-      }
-
-
-       .svg-inline--fa.fa-w-12 {
-         width: 0.75em;
-       }
-
-       .svg-inline--fa {
-         display: inline-block;
-         font-size: inherit;
-         height: 1em;
-         overflow: visible;
-         vertical-align: -0.125em;
-       }
-
-    </style>
-    <div class="biaoti">
-      <br>
-      <br>
-
-      <h3>
-
-
-        <!--        <span class="highlight">RM-PRT</span>: Realistic <span class="highlight">R</span>obotic-->
-        <!--        <span class="highlight">M</span>anipulation Simulator and <br/>Benchmark with -->
-        <!--        <span class="highlight">P</span>rogressive <span class="highlight">R</span>easoning <span class="highlight">T</span>asks-->
-        Integrating Intent Understanding and Optimal Behavior Planning for<br />
-        Behavior Tree Generation from Human instructions
-
-      </h3>
-
-
-
-      <h4>
-      <p>Xinglin Chen<sup>*</sup>, &nbsp; Yishuai Cai<sup>*</sup>, &nbsp;Yunxin Mao, &nbsp;Minglong Li<sup>↑</sup>, &nbsp;<br/>Wenjing Yang, &nbsp;Weixia Xu,&nbsp;Ji Wang
-      <div>College of Computer Science and Technology,<br/> National University of Defense Technology</div> 
-      </h4>
-
-      <br>
-      <div class="column has-text-centered">
-        <div style="width:1200px; margin:0 auto; text-align=left; font-size: 130%;">
-          <span>Robots executing tasks following human instructions in domestic or industrial environments essentially require both adaptability and reliability. Behavior Trees (BTs) emerge as an appropriate control architecture for these scenarios due to their modularity and reactivity. Existing BT generation methods, however, either do not involve interpreting natural language or cannot theoretically guarantee the BTs' success. This paper proposes a two-stage framework for BT generation, which first employs large language models (LLMs) to interpret goals from high-level instructions, then constructs an efficient goal-specific BT through the Optimal Behavior Tree Expansion Algorithm (OBTEA). We represent goals as well-formed formulas in first-order logic, effectively bridging intent understanding and optimal behavior planning. Experiments in hospitality industry settings validate the proficiency of LLMs in producing grammatically correct and accurately interpreted goals, demonstrate OBTEA's superiority over the baseline BT Expansion algorithm in various metrics, and finally confirm the practical deployability of our framework.</span>
-        </div>
-      </div>
-      <br>
-
-      <!--
-      <div class="column has-text-centered">
-        <div class="publication-links">
-          <span class="link-block">
-            <a href="https://arxiv.org/abs/2306.11335"
-               class="external-link button is-normal is-rounded is-dark">
-               <span class="icon">
-                <i class="fas fa-file-pdf"></i>
-              </span>
-              <span>arXiv</span>
-            </a>
-          </span>
-      -->
-
-          <!-- Code Link. -->
-          <span class="link-block">
-                <a href="https://github.com/DIDS-EI/LLM-OBTEA" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <svg class="svg-inline--fa fa-github fa-w-16" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg=""><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg><!-- <i class="fab fa-github"></i> Font Awesome fontawesome.com -->
-                  </span>
-                  <span>Code</span>
-                  </a>
-              </span>
-          <!-- Simulator Link. -->
-
-<!--           <span class="link-block">
-                <a href="https://github.com/Necolizer/RM-PRT/tree/main/Env" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <svg class="svg-inline--fa fa-file-download fa-w-12" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-download" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm76.45 211.36l-96.42 95.7c-6.65 6.61-17.39 6.61-24.04 0l-96.42-95.7C73.42 337.29 80.54 320 94.82 320H160v-80c0-8.84 7.16-16 16-16h32c8.84 0 16 7.16 16 16v80h65.18c14.28 0 21.4 17.29 11.27 27.36zM377 105L279.1 7c-4.5-4.5-10.6-7-17-7H256v128h128v-6.1c0-6.3-2.5-12.4-7-16.9z"></path></svg>
-                  </span>
-                  <span>Simulator</span>
-                </a>
-              </span> -->
-          
-
-         </div>
-
+  <!-- ======================== NAVBAR ======================== -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="Robowaiter home">
+        <span class="brand-mark">Robo</span><span class="brand-name">waiter</span>
+      </a>
+      <nav class="nav-links" aria-label="Section navigation">
+        <a href="#abstract" data-i18n="nav.abstract">Abstract</a>
+        <a href="#pipeline" data-i18n="nav.pipeline">Pipeline</a>
+        <a href="#demo" data-i18n="nav.demo">Demo</a>
+        <a href="#showcase" data-i18n="nav.showcase">Showcase</a>
+        <a href="#bibtex" data-i18n="nav.cite">Cite</a>
+      </nav>
+      <div class="lang-switch" role="group" aria-label="Language switch">
+        <button class="lang-btn is-active" data-lang="en" type="button">EN</button>
+        <span class="lang-sep" aria-hidden="true">/</span>
+        <button class="lang-btn" data-lang="zh" type="button">中文</button>
       </div>
     </div>
+  </header>
 
-    <section class="slider_section ">
-      <div id="customCarousel1" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
+  <main id="top">
+    <!-- ======================== HERO ======================== -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <p class="eyebrow" data-i18n="hero.eyebrow">Behavior Tree Generation · LLM × Optimal Planning</p>
+        <h1 class="hero-title">
+          <span data-i18n="hero.title.l1">Integrating Intent Understanding and</span><br />
+          <span data-i18n="hero.title.l2">Optimal Behavior Planning for</span><br />
+          <span class="gradient-text" data-i18n="hero.title.l3">Behavior Tree Generation</span>
+          <span data-i18n="hero.title.l4"> from Human Instructions</span>
+        </h1>
 
-          <div class="carousel-item active">
-            <div class="container">
-              
-                <div style="text-align: center">
-                <img class="small-image" src="images/render/development.png" alt="" style="transform:scale(1) ">
-              </div>
-            </div>
-          </div>
+        <p class="authors" aria-label="Authors">
+          <span class="author co-first">Xinglin&nbsp;Chen<sup>*</sup></span><span class="sep">,</span>
+          <span class="author co-first">Yishuai&nbsp;Cai<sup>*</sup></span><span class="sep">,</span>
+          <span class="author">Yunxin&nbsp;Mao</span><span class="sep">,</span>
+          <span class="author">Minglong&nbsp;Li<sup>↑</sup></span><span class="line-break"></span>
+          <span class="author">Wenjing&nbsp;Yang</span><span class="sep">,</span>
+          <span class="author">Weixia&nbsp;Xu</span><span class="sep">,</span>
+          <span class="author">Ji&nbsp;Wang</span>
+        </p>
+        <p class="affiliation" data-i18n="hero.affiliation">College of Computer Science and Technology · National University of Defense Technology</p>
+        <p class="note">
+          <sup>*</sup> <span data-i18n="hero.equal">Equal contribution</span>
+          &nbsp;·&nbsp;
+          <sup>↑</sup> <span data-i18n="hero.corresponding">Corresponding author</span>
+        </p>
 
-
-        </div>
-      </div>
-    </section>
-
-
-    
-  </div>
-
-
-
-  <section class="product_section layout_padding layout_padding">
-    <div class="container">
-     
-<!-- 
-      <div class="heading_container heading_center">
-        <h2>
-          Simulator
-        </h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-8 col-lg-2">
-        <div class="box">
-          <div style="text-align: center">
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-8 col-lg-4">
-        <div class="box">
-          <div style="text-align: center">
-            <h3 style="margin-top: 10px">Video</h3>
-            <iframe width="640" height="480" src="https://www.youtube.com/embed/k6V9LHUi2hw?rel=0&amp;showinfo=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-lg-4">
-        <div class="box">
-          <div style="text-align: center">
-            <h3 style="margin-top: 10px">Scenes</h3>
-              <img width="100%" height="480" src="images/render/1234.jpg" alt="">
-             
-          </div>
-        </div>
-      </div>
-    </div> -->
-
-
-    <div class="row">
-      <div class="col-sm-8 col-lg-2">
-        <div class="box">
-          <div style="text-align: center">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <div class="heading_container heading_center">
-        <h2>
-          Pipeline
-        </h2>
-      </div>
-    </div>
-    <div class="container">
-        <div style="text-align: center">
-          <img class="small-image" src="images/render/framework.png" alt="" >
-      </div>
-    </div>
-      
-</section>
-
-
-
-
-
-
-
-
-  <section class="client_section layout_padding">
-    <div class="container">
-      <div class="heading_container heading_center">
-        <h2>
-          Demo
-        </h2>
-      </div>
-    </div>
-    <section class="about_section"><br></section>
-    
-    <section class="about_section">
-      <div id="carouselExample2Controls" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="container-fluid  ">
-            <div class="row">
-              <div class="col-md-4 ml-auto">
-                <div class="detail-box pr-md-3">
-                  <p style="font-size: 24px;">
-                    Easy Level: <br>
-                    It's quite toasty inside, <br> could you please lower the air conditioning temperature?
-                    <br><br>
-                    Goal:<br> Low(ACTemperature)
-                  </p>
-                  <img src="images/tree_easy.svg" alt="" width="800">
-                </div>
-              </div>
-              <div class="col-md-6 px-10">
-                <div class="img-box">
-                  <video  width="100%" height="640" poster="" id="steve" autoplay controls muted loop playsinline>
-                    <source src="videos/demo_easy.mp4"
-                            type="video/mp4">
-                  </video>  
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="carousel-item">
-          <div class="container-fluid  ">
-            <div class="row">
-              <div class="col-md-4 ml-auto">
-                <div class="detail-box pr-md-3">
-                  <p style="font-size: 24px;">
-                    Medium Level: <br>
-                    Could you please not put the carton drink <br> on table one and close the curtain?
-                    <br><br>
-                    Goal:<br> ~On(Softdrink,Table1) & Closed(Curtain)
-                  </p>
-                  <img src="images/tree_medium.svg" alt="" width="820">
-                </div>
-              </div>
-              <div class="col-md-6 px-10">
-                <div class="img-box">
-                  <video  width="100%" height="640" poster="" id="steve" autoplay controls muted loop playsinline>
-                    <source src="videos/demo_medium.mp4"
-                            type="video/mp4">
-                  </video>  
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="carousel-item">
-          <div class="container-fluid  ">
-            <div class="row">
-              <div class="col-md-4 ml-auto">
-                <div class="detail-box pr-md-3">
-                  <p style="font-size: 24px;">
-                    Hard Level: <br>
-                    Could you please turn on the coffee machine at the bar, and <br> make sure the floor is clean or the tube light is off? <br> I enjoy my coffee in a cozy environment.
-                    <br><br>
-                    Goal:<br> On(Coffee,Bar) & (IsClean(Floor) | ~Active(TubeLight))
-                  </p>
-                  <img src="images/tree_hard.svg" alt="" width="820">
-                  <!-- <img src="images/tree_hard.png" alt="" width="920" height="300"> -->
-                </div>
-              </div>
-              <div class="col-md-6 px-10">
-                <div class="img-box">
-                  <video  width="100%" height="640" poster="" id="steve" autoplay controls muted loop playsinline>
-                    <source src="videos/demo_hard.mp4"
-                            type="video/mp4">
-                  </video>  
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="carousel_btn-box">
-          <a class="carousel-control-prev" href="#carouselExample2Controls" role="button" data-slide="prev" >
-            <span>
-              <i class="fa fa-angle-left" aria-hidden="true"></i>
-            </span>
-            <span class="sr-only">Previous</span>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://github.com/DIDS-EI/LLM-OBTEA" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-1.96c-3.2.7-3.88-1.54-3.88-1.54-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.74 2.67 1.24 3.32.95.1-.74.4-1.24.72-1.52-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.93 10.93 0 0 1 5.74 0c2.18-1.49 3.14-1.18 3.14-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.13v3.16c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/>
+            </svg>
+            <span data-i18n="hero.cta.github">View on GitHub</span>
           </a>
-          <a class="carousel-control-next" href="#carouselExample2Controls" role="button" data-slide="next">
-            <span>
-              <i class="fa fa-angle-right" aria-hidden="true"></i>
-            </span>
-            <span class="sr-only">Next</span>
+          <a class="btn btn-secondary" href="https://www.ijcai.org/proceedings/2024/0755.pdf" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <path fill="currentColor" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm-1 7V3.5L18.5 9H13Zm-5 4h8v2H8v-2Zm0 4h8v2H8v-2Z"/>
+            </svg>
+            <span data-i18n="hero.cta.paper">Read Paper (PDF)</span>
           </a>
         </div>
-      </div>
-     
-    </section> 
 
-    <!-- <section class="about_section"><br></section>
-
-    <section class="about_section">
-      <div class="container-fluid  ">
-        <div class="row">
-          
-          <div class="col-md-2 ml-auto">
-            <div class="detail-box pr-md-0">
-              <p style="font-size: 24px;">
-                Level 3: <br>
-                  Hey Robot, could you grasp me the brown bottle of Coffee?
-                
-              </p>
-            </div>
-          </div>
-          <div class="col-md-3 px-2">
-            <div class="img-box">
-              <video  width="100%" height="640" poster="" id="steve" autoplay controls muted loop playsinline>
-                <source src="videos/Level3.mp4"
-                        type="video/mp4">
-              </video>
-            </div>
-          </div>
-          <div class="col-md-2 ml-auto">
-            <div class="detail-box pr-md-0">
-              <p style="font-size: 24px;">
-                Level 4: <br>
-                Robot, could you please fetch the white cylindrical tube to me?  It's in front of you, on the right.  I need it to brush my teeth.
-              </p>
-            </div>
-          </div>
-          <div class="col-md-3 px-2">
-            <div class="img-box">
-              <video  width="100%" height="640" poster="" id="steve" autoplay controls muted loop playsinline>
-                <source src="videos/Level4.mp4"
-                        type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
+        <figure class="hero-figure">
+          <img src="images/render/development.png" alt="Overview of the Robowaiter framework: from human instruction to executable behavior tree." loading="lazy" />
+        </figure>
       </div>
     </section>
-    <section class="about_section"><br></section> -->
-    
-    <!-- <section class="about_section">
-      <div class="container-fluid  ">
-        <div class="row">
-          <div class="col-md-6 ml-auto">
-            <div class="detail-box pr-md-0">
-              <p style="font-size: 24px;">
-                Level 3: <br>
-                  Robot, please grab the small, white Teacup with a curved shape, I need it for a hot cup of tea.
-                
-              </p>
-            </div>
-          </div>
-          <div class="col-md-4 px-0">
-            <div class="img-box">
-              <img src="images/render/level3.png" alt="">
-              </video> 
-            </div>
-          </div>
-        </div>
+
+    <!-- ======================== ABSTRACT ======================== -->
+    <section id="abstract" class="section">
+      <div class="container narrow">
+        <h2 class="section-title" data-i18n="abstract.title">Abstract</h2>
+        <p class="lead" data-i18n="abstract.p1" data-i18n-html="true">
+          Robots executing tasks following human instructions in domestic or industrial environments essentially require
+          both <strong>adaptability</strong> and <strong>reliability</strong>. Behavior Trees (BTs) emerge as an
+          appropriate control architecture for these scenarios due to their modularity and reactivity. Existing BT
+          generation methods, however, either do not involve interpreting natural language or cannot theoretically
+          guarantee the BTs' success.
+        </p>
+        <p class="lead" data-i18n="abstract.p2" data-i18n-html="true">
+          This paper proposes a <strong>two-stage framework</strong> for BT generation: first employing large language
+          models (LLMs) to interpret goals from high-level instructions, then constructing an efficient goal-specific BT
+          through the <strong>Optimal Behavior Tree Expansion Algorithm (OBTEA)</strong>. We represent goals as
+          well-formed formulas in first-order logic, effectively bridging intent understanding and optimal behavior
+          planning. Experiments in hospitality industry settings validate the proficiency of LLMs in producing
+          grammatically correct and accurately interpreted goals, demonstrate OBTEA's superiority over the baseline BT
+          Expansion algorithm in various metrics, and finally confirm the practical deployability of our framework.
+        </p>
       </div>
     </section>
-    <section class="about_section"><br></section>
-    <section class="about_section">
-      <div class="container-fluid  ">
-        <div class="row">
-          <div class="col-md-6 ml-auto">
-            <div class="detail-box pr-md-0">
-              <p style="font-size: 24px;">
-                Level 4: <br>
-                  Robot, could you please grab the blue and white squeeze tube on the front-right of the GlueStick? It's a creamy snack that I need for my smoothie recipe.
-              </p>
-            </div>
-          </div>
-          <div class="col-md-4 px-0">
-            <div class="img-box">
-              <img src="images/render/level4.png" alt="">
-              </video> 
-            </div>
-          </div>
-        </div>
+
+    <!-- ======================== PIPELINE ======================== -->
+    <section id="pipeline" class="section section-alt">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-title" data-i18n="pipeline.title">Pipeline</h2>
+          <p class="section-sub" data-i18n="pipeline.sub">A two-stage framework: LLM-driven intent understanding meets optimal behavior planning.</p>
+        </header>
+        <figure class="figure-card">
+          <img src="images/render/framework.png" alt="Robowaiter pipeline diagram showing instruction parsing and behavior tree expansion." loading="lazy" />
+        </figure>
       </div>
-    </section> -->
+    </section>
 
+    <!-- ======================== DEMO ======================== -->
+    <section id="demo" class="section">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-title" data-i18n="demo.title">Demo</h2>
+          <p class="section-sub" data-i18n="demo.sub">Three tiers of instructions — from a single intent to compositional logical goals.</p>
+        </header>
 
-
-    <div>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-    </div>
-    <div class="client_container ">
-      <div id="carouselExample2Controls" class="carousel slide" data-ride="carousel">
-        <div class="heading_container heading_center">
-      <h2>
-        A Day at the Café <br>
-        ——Exhibited at ChinaSoft 2023
-      </h2>
-      <br>
-      <br>
+        <div class="tabs" role="tablist" aria-label="Demo difficulty">
+          <button class="tab is-active" role="tab" aria-selected="true" aria-controls="panel-easy" id="tab-easy" data-target="panel-easy" data-i18n="demo.tab.easy">Easy</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="panel-medium" id="tab-medium" data-target="panel-medium" data-i18n="demo.tab.medium">Medium</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="panel-hard" id="tab-hard" data-target="panel-hard" data-i18n="demo.tab.hard">Hard</button>
         </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-              <div class="detail-box">
-                <div style="text-align: center" class="img-box">
-                   <video  class="small-video" poster="" id="steve" autoplay controls muted loop playsinline>
-                    <source src="videos/A Day at the Café.mp4"
-                            type="video/mp4">
-                  </video> 
-<!--                   <div style="text-align: center">
-                    <h4>
-                      Example: Please take the glass and put it on the marble table.
-                    </h4>
-                  </div> -->
+
+        <div class="tab-panels">
+          <article class="panel is-active" id="panel-easy" role="tabpanel" aria-labelledby="tab-easy">
+            <div class="panel-grid">
+              <div class="panel-info">
+                <span class="badge badge-easy" data-i18n="demo.badge.easy">Easy Level</span>
+                <p class="instruction" data-i18n="demo.easy.inst">"It's quite toasty inside, could you please lower the air conditioning temperature?"</p>
+                <div class="goal">
+                  <span class="goal-label" data-i18n="demo.goal">Goal</span>
+                  <code>Low(ACTemperature)</code>
                 </div>
+                <figure class="tree">
+                  <img src="images/tree_easy.svg" alt="Behavior tree for the easy-level instruction." loading="lazy" />
+                </figure>
               </div>
-          </div>
-          
+              <div class="panel-video">
+                <video src="videos/demo_easy.mp4" autoplay muted loop playsinline controls preload="metadata"></video>
+              </div>
+            </div>
+          </article>
 
+          <article class="panel" id="panel-medium" role="tabpanel" aria-labelledby="tab-medium" hidden>
+            <div class="panel-grid">
+              <div class="panel-info">
+                <span class="badge badge-medium" data-i18n="demo.badge.medium">Medium Level</span>
+                <p class="instruction" data-i18n="demo.medium.inst">"Could you please not put the carton drink on table one and close the curtain?"</p>
+                <div class="goal">
+                  <span class="goal-label" data-i18n="demo.goal">Goal</span>
+                  <code>~On(Softdrink, Table1) ∧ Closed(Curtain)</code>
+                </div>
+                <figure class="tree">
+                  <img src="images/tree_medium.svg" alt="Behavior tree for the medium-level instruction." loading="lazy" />
+                </figure>
+              </div>
+              <div class="panel-video">
+                <video src="videos/demo_medium.mp4" muted loop playsinline controls preload="metadata"></video>
+              </div>
+            </div>
+          </article>
 
+          <article class="panel" id="panel-hard" role="tabpanel" aria-labelledby="tab-hard" hidden>
+            <div class="panel-grid">
+              <div class="panel-info">
+                <span class="badge badge-hard" data-i18n="demo.badge.hard">Hard Level</span>
+                <p class="instruction" data-i18n="demo.hard.inst">"Could you please turn on the coffee machine at the bar, and make sure the floor is clean or the tube light is off? I enjoy my coffee in a cozy environment."</p>
+                <div class="goal">
+                  <span class="goal-label" data-i18n="demo.goal">Goal</span>
+                  <code>On(Coffee, Bar) ∧ (IsClean(Floor) ∨ ~Active(TubeLight))</code>
+                </div>
+                <figure class="tree">
+                  <img src="images/tree_hard.svg" alt="Behavior tree for the hard-level instruction." loading="lazy" />
+                </figure>
+              </div>
+              <div class="panel-video">
+                <video src="videos/demo_hard.mp4" muted loop playsinline controls preload="metadata"></video>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
+    </section>
+
+    <!-- ======================== SHOWCASE ======================== -->
+    <section id="showcase" class="section section-alt">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-title" data-i18n="showcase.title">A Day at the Café</h2>
+          <p class="section-sub" data-i18n="showcase.sub" data-i18n-html="true">Live demonstration exhibited at <strong>ChinaSoft 2023</strong>.</p>
+          <div class="cta-row cta-row-center">
+            <a class="btn btn-primary" href="https://github.com/HPCL-EI/RoboWaiter" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-1.96c-3.2.7-3.88-1.54-3.88-1.54-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.74 2.67 1.24 3.32.95.1-.74.4-1.24.72-1.52-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.93 10.93 0 0 1 5.74 0c2.18-1.49 3.14-1.18 3.14-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.13v3.16c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/>
+              </svg>
+              <span data-i18n="showcase.cta.github">RoboWaiter on GitHub</span>
+            </a>
+          </div>
+        </header>
+        <figure class="showcase-video">
+          <video src="videos/A Day at the Café.mp4" autoplay muted loop playsinline controls preload="metadata"></video>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ======================== BIBTEX ======================== -->
+    <section id="bibtex" class="section">
+      <div class="container narrow">
+        <header class="section-header">
+          <h2 class="section-title" data-i18n="cite.title">Citation</h2>
+          <p class="section-sub" data-i18n="cite.sub">If you find this work helpful for your research, please consider citing:</p>
+        </header>
+        <div class="codeblock">
+          <button class="copy-btn" type="button" aria-label="Copy BibTeX" data-i18n="cite.copy">Copy</button>
+<pre><code id="bib">@inproceedings{chen2024robowaiter,
+  title     = {Integrating Intent Understanding and Optimal Behavior Planning
+               for Behavior Tree Generation from Human Instructions},
+  author    = {Chen, Xinglin and Cai, Yishuai and Mao, Yunxin and Li, Minglong
+               and Yang, Wenjing and Xu, Weixia and Wang, Ji},
+  booktitle = {Proceedings},
+  year      = {2024}
+}</code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Robowaiter · <span data-i18n="footer.org">College of Computer Science and Technology, NUDT</span></p>
+      <a href="https://github.com/DIDS-EI/LLM-OBTEA" target="_blank" rel="noopener" data-i18n="footer.repo">GitHub Repository →</a>
     </div>
-  </section> 
-
-
-<!-- 
-  
-  <section class="client_section layout_padding" style="background-color:  #3965b5;">
-  </section>
-
-  <section class="product_section layout_padding">
-  <div style="text-align: center">
-   
-    <div class="heading_container heading_center">
-      <h2>
-        Real Machine
-      </h2>
-    </div>
-    <div class="row">
-      <div class="col-sm-8 col-lg-7">
-        <div class="box">
-      <iframe width="640" height="480" src="videos/3.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-      </div>
-
-      <div class="col-sm-8 col-lg-3">
-        <div class="box">
-      <iframe width="640" height="480" src="videos/5.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-    </div>
-  </div>
-  </section>
-
-  <section class="product_section layout_padding">
-    <div class="container">
-      <div class="heading_container heading_center">
-        <h2>
-          Scenes Being Built
-        </h2>
-      </div>
-      <div class="row">
-        <div class="col-sm-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/render/5.png" alt="">
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/render/6.png" alt="">
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/render/7.png" alt="">
-            </div>
-
-          </div>
-        </div>
-      </div>
-      
-      <div class="heading_container heading_center">
-        <h4>
-          Retirement Home
-        </h4>
-      </div>
-      <div class="row">
-        <div class="col-sm-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/render/8.png" alt="">
-            </div>
-
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/render/9.png" alt="">
-            </div>
-
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/render/10.png" alt="">
-            </div>
-
-          </div>
-        </div>
-      </div>
-      <div class="heading_container heading_center">
-        <h4>
-          Cafe
-        </h4>
-      </div>
-      <div class="heading_container heading_center">
-        <h4>
-          RM-PRT has Retirement Home & Cafe scenes and we are now working on their APIs.
-        </h4>
-      </div>
-      
-    </div>
-  </section> -->
-
-
-
-
-  <!-- jQery -->
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <!-- bootstrap js -->
-  <script src="js/bootstrap.js"></script>
-  <!-- custom js -->
-  <script src="js/custom.js"></script>
+  </footer>
 
   <script>
-    $(function () {
-      $('#carouselExample2Controls').carousel({
+    /* -------------------- i18n -------------------- */
+    const I18N = {
+      en: {
+        'nav.abstract': 'Abstract',
+        'nav.pipeline': 'Pipeline',
+        'nav.demo': 'Demo',
+        'nav.showcase': 'Showcase',
+        'nav.cite': 'Cite',
+        'hero.eyebrow': 'Behavior Tree Generation · LLM × Optimal Planning',
+        'hero.title.l1': 'Integrating Intent Understanding and',
+        'hero.title.l2': 'Optimal Behavior Planning for',
+        'hero.title.l3': 'Behavior Tree Generation',
+        'hero.title.l4': ' from Human Instructions',
+        'hero.affiliation': 'College of Computer Science and Technology · National University of Defense Technology',
+        'hero.equal': 'Equal contribution',
+        'hero.corresponding': 'Corresponding author',
+        'hero.cta.github': 'View on GitHub',
+        'hero.cta.paper': 'Read Paper (PDF)',
+        'abstract.title': 'Abstract',
+        'abstract.p1': 'Robots executing tasks following human instructions in domestic or industrial environments essentially require both <strong>adaptability</strong> and <strong>reliability</strong>. Behavior Trees (BTs) emerge as an appropriate control architecture for these scenarios due to their modularity and reactivity. Existing BT generation methods, however, either do not involve interpreting natural language or cannot theoretically guarantee the BTs\' success.',
+        'abstract.p2': 'This paper proposes a <strong>two-stage framework</strong> for BT generation: first employing large language models (LLMs) to interpret goals from high-level instructions, then constructing an efficient goal-specific BT through the <strong>Optimal Behavior Tree Expansion Algorithm (OBTEA)</strong>. We represent goals as well-formed formulas in first-order logic, effectively bridging intent understanding and optimal behavior planning. Experiments in hospitality industry settings validate the proficiency of LLMs in producing grammatically correct and accurately interpreted goals, demonstrate OBTEA\'s superiority over the baseline BT Expansion algorithm in various metrics, and finally confirm the practical deployability of our framework.',
+        'pipeline.title': 'Pipeline',
+        'pipeline.sub': 'A two-stage framework: LLM-driven intent understanding meets optimal behavior planning.',
+        'demo.title': 'Demo',
+        'demo.sub': 'Three tiers of instructions — from a single intent to compositional logical goals.',
+        'demo.tab.easy': 'Easy',
+        'demo.tab.medium': 'Medium',
+        'demo.tab.hard': 'Hard',
+        'demo.badge.easy': 'Easy Level',
+        'demo.badge.medium': 'Medium Level',
+        'demo.badge.hard': 'Hard Level',
+        'demo.goal': 'Goal',
+        'demo.easy.inst': '"It\'s quite toasty inside, could you please lower the air conditioning temperature?"',
+        'demo.medium.inst': '"Could you please not put the carton drink on table one and close the curtain?"',
+        'demo.hard.inst': '"Could you please turn on the coffee machine at the bar, and make sure the floor is clean or the tube light is off? I enjoy my coffee in a cozy environment."',
+        'showcase.title': 'A Day at the Café',
+        'showcase.sub': 'Live demonstration exhibited at <strong>ChinaSoft 2023</strong>.',
+        'showcase.cta.github': 'RoboWaiter on GitHub',
+        'cite.title': 'Citation',
+        'cite.sub': 'If you find this work helpful for your research, please consider citing:',
+        'cite.copy': 'Copy',
+        'footer.org': 'College of Computer Science and Technology, NUDT',
+        'footer.repo': 'GitHub Repository →',
+      },
+      zh: {
+        'nav.abstract': '摘要',
+        'nav.pipeline': '框架',
+        'nav.demo': '演示',
+        'nav.showcase': '展示',
+        'nav.cite': '引用',
+        'hero.eyebrow': '行为树生成 · 大模型 × 最优规划',
+        'hero.title.l1': '融合意图理解与最优行为规划',
+        'hero.title.l2': '面向人类指令的',
+        'hero.title.l3': '行为树自动生成',
+        'hero.title.l4': '',
+        'hero.affiliation': '国防科技大学 · 计算机学院',
+        'hero.equal': '共同第一作者',
+        'hero.corresponding': '通讯作者',
+        'hero.cta.github': '查看 GitHub 代码',
+        'hero.cta.paper': '阅读论文（PDF）',
+        'abstract.title': '摘要',
+        'abstract.p1': '在家庭与工业场景中，机器人执行人类指令的任务本质上同时要求<strong>自适应性</strong>与<strong>可靠性</strong>。行为树（BT）凭借其模块化与响应式特性，是此类场景下理想的控制架构。然而，现有的行为树生成方法，要么不涉及自然语言理解，要么无法在理论层面保证行为树的成功执行。',
+        'abstract.p2': '本文提出一种用于行为树生成的<strong>两阶段框架</strong>：首先利用大语言模型（LLM）从高层指令中解析任务目标，再通过<strong>最优行为树扩展算法（OBTEA）</strong>构造高效的、目标特定的行为树。我们将目标表示为一阶逻辑中的合式公式，从而有效地连接了意图理解与最优行为规划。在酒店业场景中的实验表明：LLM 能够产生语法正确、语义准确的目标解析；OBTEA 在多项指标上优于基线 BT 扩展算法；并最终验证了本框架的实际部署可行性。',
+        'pipeline.title': '框架概览',
+        'pipeline.sub': '两阶段框架：LLM 驱动的意图理解与最优行为规划相结合。',
+        'demo.title': '演示',
+        'demo.sub': '三个难度层级的指令——从单一意图到复合逻辑目标。',
+        'demo.tab.easy': '简单',
+        'demo.tab.medium': '中等',
+        'demo.tab.hard': '困难',
+        'demo.badge.easy': '简单难度',
+        'demo.badge.medium': '中等难度',
+        'demo.badge.hard': '困难难度',
+        'demo.goal': '目标',
+        'demo.easy.inst': '"屋里有点热，可以把空调温度调低一些吗？"',
+        'demo.medium.inst': '"请不要把那盒饮料放到一号桌上，并把窗帘关上。"',
+        'demo.hard.inst': '"请打开吧台的咖啡机，同时确保地面干净或者管灯关闭——我喜欢在舒适的环境里喝咖啡。"',
+        'showcase.title': '咖啡馆的一天',
+        'showcase.sub': '此演示曾在 <strong>ChinaSoft 2023</strong> 现场展出。',
+        'showcase.cta.github': '前往 RoboWaiter GitHub',
+        'cite.title': '引用',
+        'cite.sub': '如果本工作对您的研究有所帮助，欢迎引用：',
+        'cite.copy': '复制',
+        'footer.org': '国防科技大学 · 计算机学院',
+        'footer.repo': '前往 GitHub →',
+      }
+    };
 
-        interval: 8000
+    function applyLang(lang) {
+      const dict = I18N[lang] || I18N.en;
+      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+      document.body.classList.toggle('lang-zh', lang === 'zh');
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const key = el.getAttribute('data-i18n');
+        if (!(key in dict)) return;
+        const html = el.getAttribute('data-i18n-html') === 'true';
+        if (html) el.innerHTML = dict[key];
+        else el.textContent = dict[key];
+      });
+      document.querySelectorAll('.lang-btn').forEach((b) => {
+        b.classList.toggle('is-active', b.dataset.lang === lang);
+      });
+      try { localStorage.setItem('rw_lang', lang); } catch {}
+    }
 
-      })
-    })
+    document.querySelectorAll('.lang-btn').forEach((b) => {
+      b.addEventListener('click', () => applyLang(b.dataset.lang));
+    });
+
+    // Default = EN unless previously chosen
+    const saved = (() => { try { return localStorage.getItem('rw_lang'); } catch { return null; } })();
+    applyLang(saved === 'zh' ? 'zh' : 'en');
+
+    /* -------------------- Year -------------------- */
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* -------------------- Tabs -------------------- */
+    const tabs = document.querySelectorAll('.tab');
+    const panels = document.querySelectorAll('.panel');
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.target;
+        tabs.forEach((t) => {
+          const active = t === tab;
+          t.classList.toggle('is-active', active);
+          t.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        panels.forEach((p) => {
+          const active = p.id === target;
+          p.classList.toggle('is-active', active);
+          if (active) {
+            p.removeAttribute('hidden');
+            const v = p.querySelector('video');
+            if (v) { v.currentTime = 0; v.play().catch(() => {}); }
+          } else {
+            p.setAttribute('hidden', '');
+            const v = p.querySelector('video');
+            if (v) v.pause();
+          }
+        });
+      });
+    });
+
+    /* -------------------- Copy BibTeX -------------------- */
+    const copyBtn = document.querySelector('.copy-btn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', async () => {
+        const text = document.getElementById('bib').innerText;
+        const lang = document.body.classList.contains('lang-zh') ? 'zh' : 'en';
+        const okWord = lang === 'zh' ? '已复制' : 'Copied';
+        const failWord = lang === 'zh' ? '失败' : 'Failed';
+        const baseWord = lang === 'zh' ? '复制' : 'Copy';
+        try {
+          await navigator.clipboard.writeText(text);
+          copyBtn.textContent = okWord;
+          setTimeout(() => (copyBtn.textContent = baseWord), 1600);
+        } catch {
+          copyBtn.textContent = failWord;
+          setTimeout(() => (copyBtn.textContent = baseWord), 1600);
+        }
+      });
+    }
+
+    /* -------------------- Smooth scroll offset -------------------- */
+    document.querySelectorAll('a[href^="#"]').forEach((a) => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if (!el) return;
+        e.preventDefault();
+        const y = el.getBoundingClientRect().top + window.scrollY - 70;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      });
+    });
+
+    /* -------------------- Navbar shadow on scroll -------------------- */
+    const nav = document.querySelector('.navbar');
+    const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
   </script>
 </body>
-
 </html>
