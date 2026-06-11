@@ -26,6 +26,12 @@
 
   <title>MRBTP</title>
   <link rel="icon" href="images/omni_bt_logo.png">
+
+  <!-- Modern UI font (body & buttons only; title font kept as-is) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <link href="index/css" rel="stylesheet">
 
   <link rel="stylesheet" href="index/bulma.min.css">
@@ -34,6 +40,598 @@
   <link rel="stylesheet" href="index/fontawesome.all.min.css">
   <link rel="stylesheet" href="index/academicons.min.css">
   <link rel="stylesheet" href="index/index.css">
+
+  <!-- ===== Modern academic theme (MRBTP) =====
+       NOTE: Publication title & author-name typography/colors are intentionally preserved. -->
+  <style>
+    :root {
+      --bg:        #f7f8fb;
+      --surface:   #ffffff;
+      --ink:       #1a1f2b;
+      --ink-soft:  #4a5160;
+      --line:      #e7e9f0;
+      --brand:     #3a5bd9;
+      --brand-2:   #6d83f2;
+      --accent:    #8b1a2b; /* keeps the AAAI dark-red family */
+      --radius:    16px;
+      --shadow-sm: 0 1px 2px rgba(20,28,55,.06), 0 2px 8px rgba(20,28,55,.05);
+      --shadow-md: 0 8px 28px rgba(20,28,55,.10);
+      --maxw:      900px;
+    }
+
+    /* Body type modernized; serif title stays via .publication-title override below */
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+      background:
+        radial-gradient(1200px 500px at 50% -120px, #eef1fb 0%, rgba(238,241,251,0) 70%),
+        var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---------- HERO (title + authors block) ---------- */
+    section.hero:first-of-type {
+      background: transparent;
+    }
+    section.hero:first-of-type .hero-body {
+      padding-top: 4.5rem;
+      padding-bottom: 2rem;
+    }
+
+    /* PRESERVE original title & author typography (serif), overriding body Inter */
+    section.hero:first-of-type,
+    section.hero:first-of-type .title,
+    .publication-title,
+    .publication-authors,
+    .publication-authors .author-block,
+    .publication-authors .eql-cntrb,
+    .publication-authors a {
+      font-family: 'Times New Roman', Times, serif !important;
+    }
+    .publication-title.title.is-1 {
+      margin-bottom: 1.1rem !important;
+    }
+
+    /* Venue badge — refined pill, same dark-red identity */
+    section.hero:first-of-type .author-block[style*="darkred"],
+    .author-block[style*="darkred"] {
+      display: inline-block;
+      color: #fff !important;
+      background: linear-gradient(135deg, #a01f33, #7c1626);
+      padding: .32em 1.05em !important;
+      border-radius: 999px;
+      font-size: 15px !important;
+      letter-spacing: .02em;
+      box-shadow: 0 4px 14px rgba(124,22,38,.28);
+      margin-bottom: 1.1rem;
+    }
+
+    /* Authors — keep original serif look & blue links; only tidy spacing */
+    .publication-authors {
+      margin-top: .35rem;
+      line-height: 1.7;
+    }
+    .publication-authors .author-block {
+      color: var(--ink);
+      margin: 0 .15rem;
+    }
+    .publication-authors a {
+      color: hsl(204, 86%, 53%) !important; /* unchanged author-name blue */
+      text-decoration: none;
+      transition: opacity .15s ease;
+    }
+    .publication-authors a:hover { opacity: .7; text-decoration: none; }
+    .eql-cntrb {
+      color: var(--ink-soft);
+    }
+    .publication-authors .eql-cntrb {
+      font-size: .95rem;
+    }
+
+    /* ---------- BUTTONS ---------- */
+    .publication-links { margin-top: 1.6rem; gap: .6rem; display: inline-flex; flex-wrap: wrap; justify-content: center; }
+    .publication-links .link-block a.button.is-dark {
+      background: #14182a;
+      border: 1px solid #14182a;
+      border-radius: 999px !important;
+      padding: .55em 1.4em;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: .95rem;
+      box-shadow: var(--shadow-sm);
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+    .publication-links .link-block a.button.is-dark:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(20,24,42,.28);
+      background: #232a45;
+    }
+    .publication-links .icon { transition: transform .15s ease; }
+    .publication-links a:hover .icon { transform: scale(1.1); }
+
+    /* ---------- SECTION SHELLS ---------- */
+    .section { padding: 3.5rem 1.5rem; }
+
+    /* Teaser framework image becomes a clean card */
+    section.hero.teaser .hero-body { padding-top: 1rem; }
+    section.hero.teaser .container > div[style*="text-align"] {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-md);
+    }
+    section.hero.teaser img {
+      border-radius: 10px;
+      display: block;
+    }
+    section.hero.teaser .subtitle {
+      margin-top: 1.6rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.0rem;
+      line-height: 1.75;
+      color: var(--ink-soft);
+      max-width: var(--maxw);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Section titles: clean sans, accent underline */
+    .title.is-3, #BibTeX .title {
+      font-family: 'Inter', sans-serif !important;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      position: relative;
+      display: inline-block;
+      padding-bottom: .5rem;
+      margin-bottom: 1.6rem !important;
+    }
+    .title.is-3::after, #BibTeX .title::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 0;
+      width: 54px;
+      height: 3px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--brand), var(--brand-2));
+    }
+    /* left-aligned section titles (BibTeX) get a left underline */
+    #BibTeX .title { display: block; text-align: left; }
+    #BibTeX .title::after { left: 0; transform: none; }
+
+    /* Abstract: refined card with accent bar */
+    section.section.hero.is-light {
+      background: transparent;
+    }
+    section.section.hero.is-light .container {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--brand);
+      border-radius: var(--radius);
+      padding: 2.75rem 2.5rem;
+      box-shadow: var(--shadow-md);
+      text-align: left;
+    }
+    section.section.hero.is-light .columns { margin: 0; }
+    section.section.hero.is-light .column.is-four-fifths { width: 100%; }
+    section.section.hero.is-light .title.is-3 {
+      display: block;
+      text-align: left;
+    }
+    section.section.hero.is-light .title.is-3::after {
+      left: 0;
+      transform: none;
+    }
+    .content.has-text-justified p {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 1.12rem;
+      line-height: 1.9;
+      color: #2b3142;
+      text-align: justify;
+    }
+
+    /* Slides embed card */
+    section.hero.is-small .hero-body { padding: 2rem 1.5rem 3rem; }
+    embed[type="application/pdf"] {
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* BibTeX block: light, rounded code card */
+    #BibTeX { background: transparent; }
+    #BibTeX .container {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 2.2rem 2rem;
+      box-shadow: var(--shadow-md);
+    }
+    #BibTeX pre {
+      background: #f5f7fc;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--brand);
+      border-radius: 12px;
+      padding: 1.2rem 1.4rem;
+      overflow-x: auto;
+    }
+    #BibTeX pre code {
+      font-family: 'SF Mono', 'JetBrains Mono', Menlo, monospace;
+      font-size: .9rem;
+      line-height: 1.6;
+      color: #3a4763;
+      background: transparent;
+    }
+
+    /* ---------- FOOTER ---------- */
+    .footer {
+      background: #f5f7fc;
+      border-top: 1px solid var(--line);
+      color: var(--ink-soft);
+      padding: 2.5rem 1.5rem;
+    }
+    .footer .content p { font-family: 'Inter', sans-serif; font-size: .9rem; color: var(--ink-soft); line-height: 1.7; }
+    .footer a { color: var(--brand); }
+    .footer a:hover { color: #1d4fb8; text-decoration: underline; }
+
+    /* Smooth entrance */
+    @media (prefers-reduced-motion: no-preference) {
+      section.hero, .section { animation: mrbtpFade .6s ease both; }
+      @keyframes mrbtpFade {
+        from { opacity: 0; transform: translateY(12px); }
+        to   { opacity: 1; transform: none; }
+      }
+    }
+
+    @media (max-width: 768px) {
+      section.hero:first-of-type .hero-body { padding-top: 3rem; }
+      section.section.hero.is-light .container,
+      #BibTeX .container { padding: 1.6rem 1.2rem; }
+    }
+
+    /* ---------- TITLE: framework-matched gradient & per-word initials ---------- */
+    /* Palette sampled from framework.png:
+       blue (Multi-Robot BT Planning) -> green (Intention Sharing) -> orange (Subtree Pre-planning) */
+    .publication-title .mrbtp-grad {
+      background: linear-gradient(95deg, #2f6fde 0%, #1f9d7a 38%, #2aa84a 58%, #8ba62f 78%, #ee7b22 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      font-weight: bold;
+      letter-spacing: .005em;
+    }
+    /* Each word's initial echoes the abbreviation's position along the same gradient */
+    .publication-title .ttl-m { color: #2f6fde; }  /* M -> blue   */
+    .publication-title .ttl-r { color: #1f9d7a; }  /* R -> teal   */
+    .publication-title .ttl-b { color: #2aa84a; }  /* B -> green  */
+    .publication-title .ttl-t { color: #8ba62f; }  /* T -> olive  */
+    .publication-title .ttl-p { color: #ee7b22; }  /* P -> orange */
+    .publication-title .ttl-m,
+    .publication-title .ttl-r,
+    .publication-title .ttl-b,
+    .publication-title .ttl-t,
+    .publication-title .ttl-p { font-weight: bold; }
+
+    /* ---------- ABSTRACT: emphasis & soft highlights ---------- */
+    .content.has-text-justified strong {
+      color: #1a2030;
+      font-weight: 700;
+    }
+    .content.has-text-justified em {
+      font-style: italic;
+      color: #3a4763;
+    }
+    .content.has-text-justified mark {
+      background: transparent;
+      padding: 0 .06em;
+      font-weight: 700;
+      border-bottom: 2px solid currentColor;
+    }
+    .content.has-text-justified mark.hl-blue   { color: #2f6fde; }
+    .content.has-text-justified mark.hl-green  { color: #1f9a4a; }
+    .content.has-text-justified mark.hl-orange { color: #d76d18; }
+
+    /* ====== HIGHLIGHTS ====== */
+    .mrbtp-highlights { padding-top: 1.5rem; }
+    .hl-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+      margin-top: .5rem;
+    }
+    .hl-card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--brand);
+      border-radius: var(--radius);
+      padding: 2rem 1.6rem 1.6rem;
+      box-shadow: var(--shadow-md);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .hl-card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(20,28,55,.14); }
+    .hl-card-blue   { border-top-color: #2f6fde; }
+    .hl-card-green  { border-top-color: #1f9a4a; }
+    .hl-card-orange { border-top-color: #ee7b22; }
+    .hl-badge {
+      position: absolute;
+      top: -16px; left: 1.4rem;
+      width: 38px; height: 38px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700; font-size: .9rem;
+      color: #fff;
+      box-shadow: var(--shadow-sm);
+    }
+    .hl-card-blue   .hl-badge { background: linear-gradient(135deg, #3f7bef, #2f6fde); }
+    .hl-card-green  .hl-badge { background: linear-gradient(135deg, #2bb35a, #1f9a4a); }
+    .hl-card-orange .hl-badge { background: linear-gradient(135deg, #f6913a, #ee7b22); }
+    .hl-card h3 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--ink);
+      margin: .2rem 0 .7rem;
+    }
+    .hl-card p {
+      font-family: 'Inter', sans-serif;
+      font-size: .96rem;
+      line-height: 1.7;
+      color: var(--ink-soft);
+    }
+    .hl-card strong { color: var(--ink); font-weight: 700; }
+    .hl-card em { font-style: italic; color: #3a4763; }
+    .hl-tag {
+      display: inline-block;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      color: #ee7b22;
+      background: rgba(238,123,34,.12);
+      border-radius: 999px;
+      padding: .12em .6em;
+      vertical-align: middle;
+      margin-left: .35rem;
+    }
+
+    /* ====== KEY RESULTS ====== */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+      margin-bottom: 2rem;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.8rem 1.5rem;
+      box-shadow: var(--shadow-md);
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 2.6rem;
+      line-height: 1;
+      margin-bottom: .7rem;
+      letter-spacing: -.02em;
+    }
+    .stat-blue   { color: #2f6fde; }
+    .stat-green  { color: #1f9a4a; }
+    .stat-orange { color: #ee7b22; }
+    .stat-label {
+      font-family: 'Inter', sans-serif;
+      font-size: .92rem;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+    .stat-label strong { color: var(--ink); }
+    .stat-label em { font-style: italic; }
+
+    .result-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 2rem 2rem 1.6rem;
+      box-shadow: var(--shadow-md);
+    }
+    .result-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 1.18rem;
+      color: var(--ink);
+      margin-bottom: .35rem;
+    }
+    .result-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: .9rem;
+      color: var(--ink-soft);
+      margin-bottom: 1.1rem;
+    }
+    .result-sub strong { color: var(--ink); }
+    .table-wrap { overflow-x: auto; }
+    .mrbtp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Inter', sans-serif;
+      font-size: .95rem;
+    }
+    .mrbtp-table thead th {
+      background: #14182a;
+      color: #e7ecfb;
+      font-weight: 600;
+      text-align: center;
+      padding: .7rem .8rem;
+      border: none;
+    }
+    .mrbtp-table thead th:first-child { border-top-left-radius: 10px; }
+    .mrbtp-table thead th:last-child  { border-top-right-radius: 10px; }
+    .mrbtp-table td {
+      text-align: center;
+      padding: .6rem .8rem;
+      border-bottom: 1px solid var(--line);
+      color: var(--ink);
+    }
+    .mrbtp-table tbody tr:nth-child(odd) td { background: #fafbff; }
+    .mrbtp-table .row-best td {
+      background: rgba(31,154,74,.10) !important;
+      font-weight: 700;
+      color: #137a39;
+    }
+    .mrbtp-table .td-warn { color: #c0392b; font-weight: 600; }
+
+    .setup-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .8rem;
+      margin-top: 1.6rem;
+      justify-content: center;
+    }
+    .setup-chip {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: .5rem 1.1rem;
+      font-family: 'Inter', sans-serif;
+      font-size: .88rem;
+      color: var(--ink-soft);
+      box-shadow: var(--shadow-sm);
+    }
+    .setup-chip .chip-k {
+      font-weight: 700;
+      color: var(--brand);
+      margin-right: .4rem;
+    }
+
+    @media (max-width: 768px) {
+      .hl-grid, .stat-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ====== INTERACTION ENHANCEMENTS ====== */
+    /* Scroll progress bar */
+    #scrollProgress {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0;
+      background: linear-gradient(90deg, #2f6fde, #1f9d7a 40%, #2aa84a 60%, #ee7b22);
+      z-index: 1000; transition: width .08s linear;
+    }
+    /* Sticky in-page nav */
+    #mrbtpNav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 990;
+      background: rgba(255,255,255,.82);
+      backdrop-filter: saturate(180%) blur(12px);
+      -webkit-backdrop-filter: saturate(180%) blur(12px);
+      border-bottom: 1px solid var(--line);
+      transform: translateY(-100%); opacity: 0;
+      transition: transform .3s ease, opacity .3s ease;
+      box-shadow: 0 4px 18px rgba(20,28,55,.06);
+    }
+    #mrbtpNav.nav-visible { transform: translateY(0); opacity: 1; }
+    #mrbtpNav .nav-inner {
+      max-width: var(--maxw); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .6rem 1.4rem;
+    }
+    #mrbtpNav .nav-brand {
+      font-family: 'Inter', sans-serif; font-weight: 800; font-size: 1.05rem;
+      letter-spacing: .02em;
+      background: linear-gradient(95deg, #2f6fde, #1f9d7a 45%, #2aa84a 62%, #ee7b22);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: transparent;
+    }
+    #mrbtpNav .nav-links { display: flex; gap: .3rem; flex-wrap: wrap; }
+    #mrbtpNav .nav-links a {
+      font-family: 'Inter', sans-serif; font-size: .9rem; font-weight: 500;
+      color: var(--ink-soft); text-decoration: none;
+      padding: .35rem .8rem; border-radius: 999px;
+      transition: color .18s ease, background .18s ease;
+    }
+    #mrbtpNav .nav-links a:hover { color: var(--brand); background: rgba(58,91,217,.08); }
+    #mrbtpNav .nav-links a.active {
+      color: #fff; background: var(--brand);
+      box-shadow: 0 4px 12px rgba(58,91,217,.28);
+    }
+    @media (max-width: 640px) {
+      #mrbtpNav .nav-links a { padding: .3rem .55rem; font-size: .82rem; }
+      #mrbtpNav .nav-brand { display: none; }
+    }
+
+    /* Reveal-on-scroll */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    .hl-card.reveal:nth-child(2) { transition-delay: .08s; }
+    .hl-card.reveal:nth-child(3) { transition-delay: .16s; }
+    .stat-card.reveal:nth-child(2) { transition-delay: .08s; }
+    .stat-card.reveal:nth-child(3) { transition-delay: .16s; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1 !important; transform: none !important; }
+    }
+
+    /* Back-to-top button */
+    #backToTop {
+      position: fixed; right: 1.6rem; bottom: 1.6rem; z-index: 990;
+      width: 46px; height: 46px; border: none; border-radius: 50%;
+      background: var(--brand); color: #fff; font-size: 1.3rem; cursor: pointer;
+      box-shadow: 0 8px 22px rgba(58,91,217,.34);
+      opacity: 0; visibility: hidden; transform: translateY(12px) scale(.9);
+      transition: opacity .25s ease, transform .25s ease, visibility .25s ease, background .2s ease;
+    }
+    #backToTop.show { opacity: 1; visibility: visible; transform: none; }
+    #backToTop:hover { background: #2c49bf; transform: translateY(-2px); }
+
+    /* Count-up numbers keep monospace tabular feel */
+    .stat-num[data-val] { font-variant-numeric: tabular-nums; }
+
+    /* Zoomable image */
+    img.zoomable { cursor: zoom-in; transition: transform .25s ease, box-shadow .25s ease; border-radius: 10px; }
+    img.zoomable:hover { transform: scale(1.012); box-shadow: 0 14px 36px rgba(20,28,55,.16); }
+
+    /* Lightbox */
+    #lightbox {
+      position: fixed; inset: 0; z-index: 1100;
+      background: rgba(12,16,30,.86);
+      display: flex; align-items: center; justify-content: center;
+      padding: 3vw; opacity: 0; visibility: hidden;
+      transition: opacity .25s ease, visibility .25s ease;
+      cursor: zoom-out;
+    }
+    #lightbox.open { opacity: 1; visibility: visible; }
+    #lightbox img {
+      max-width: 96vw; max-height: 92vh; border-radius: 10px;
+      box-shadow: 0 24px 70px rgba(0,0,0,.5);
+      transform: scale(.96); transition: transform .25s ease;
+    }
+    #lightbox.open img { transform: scale(1); }
+    #lightboxClose {
+      position: fixed; top: 1.2rem; right: 1.6rem;
+      color: #fff; font-size: 2.4rem; line-height: 1; cursor: pointer;
+      opacity: .85; transition: opacity .2s ease;
+    }
+    #lightboxClose:hover { opacity: 1; }
+
+    /* BibTeX copy button */
+    .bibtex-wrap { position: relative; }
+    .copy-btn {
+      position: absolute; top: .7rem; right: .7rem; z-index: 2;
+      display: inline-flex; align-items: center; gap: .35rem;
+      font-family: 'Inter', sans-serif; font-size: .82rem; font-weight: 600;
+      color: var(--brand); background: #fff;
+      border: 1px solid var(--line); border-radius: 999px;
+      padding: .35rem .8rem; cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: all .18s ease;
+    }
+    .copy-btn:hover { background: var(--brand); color: #fff; border-color: var(--brand); }
+    .copy-btn .copy-ico { font-size: .95rem; }
+    .copy-btn.copied { background: #1f9a4a; color: #fff; border-color: #1f9a4a; }
+  </style>
+  <!-- ===== End modern academic theme ===== -->
 
   <script src="index/jquery.min.js.下载"></script>
   <script src="index/main.js.下载"></script><script src="index/ViewSDKInterface.js.下载"></script>
@@ -514,6 +1112,24 @@ mjx-c.mjx-c25::before {
 </style></head>
 <body>
 
+  <!-- ===== Scroll progress bar ===== -->
+  <div id="scrollProgress"></div>
+
+  <!-- ===== Sticky in-page navigation ===== -->
+  <nav id="mrbtpNav" aria-label="Section navigation">
+    <div class="nav-inner">
+      <a href="#top" class="nav-brand">MRBTP</a>
+      <div class="nav-links">
+        <a href="#highlights" data-target="highlights">Highlights</a>
+        <a href="#abstract" data-target="abstract">Abstract</a>
+        <a href="#results" data-target="results">Results</a>
+        <a href="#slides" data-target="slides">Slides</a>
+        <a href="#BibTeX" data-target="BibTeX">BibTeX</a>
+      </div>
+    </div>
+  </nav>
+  <span id="top"></span>
+
   <style>
     .gif-grid {
       display: grid;
@@ -548,13 +1164,13 @@ mjx-c.mjx-c25::before {
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h2 class="title is-1 publication-title">MRBTP: Efficient Multi-Robot Behavior Tree Planning and Collaboration</h2>
+            <h2 class="title is-1 publication-title"><span class="mrbtp-grad">MRBTP</span>: Efficient <span class="ttl-m">M</span>ulti-<span class="ttl-r">R</span>obot <span class="ttl-b">B</span>ehavior <span class="ttl-t">T</span>ree <span class="ttl-p">P</span>lanning and Collaboration</h2>
               <span class="author-block" style="color: darkred; font-weight: bold; font-size: 20px;">AAAI 2025 (Oral)</span>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block">
 <!--                <a href="https://phython96.github.io/" target="_blank">Yishuai Cai</a><sup>*</sup>,-->
-                <a  target="_blank">Yishuai Cai</a><sup>*</sup>,
+                <a href="https://caiyishuai.github.io/" target="_blank">Yishuai Cai</a><sup>*</sup>,
               </span>
               <span class="author-block">
                 <a  target="_blank">Xinglin Chen</a><sup>*</sup>,
@@ -578,9 +1194,6 @@ mjx-c.mjx-c25::before {
 
             <div class="is-size-5 publication-authors">
               <span class="eql-cntrb">College of Computer Science and Technology, National University of Defense Technology</span>
-            </div>
-            <div class="is-size-5 publication-authors">
-              <span class="eql-cntrb">{caiyishuai, chenxinglin, caizhongxuan, maoyunxin, liminglong10, wenjing.yang, wj}@nudt.edu.cn</span>
             </div>
 <!--            <span class="author-block">-->
 <!--              <a href="https://craftjarvis.github.io/" target="_blank"><b>Team CraftJarvis</b></a>-->
@@ -636,15 +1249,7 @@ mjx-c.mjx-c25::before {
 <!--                  </a>-->
 <!--                </span>-->
                       
-                <!-- ArXiv abstract Link -->
-                <span class="link-block">
-                  <a href="https://arxiv.org/abs/2502.18072" target="_blank" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-                </span>
+                <!-- ArXiv abstract Link (removed by request) -->
 
                 <!-- Huggingface Link -->
 <!--                <span class="link-block">-->
@@ -669,7 +1274,7 @@ mjx-c.mjx-c25::before {
   <div class="container is-max-desktop">
     <div class="hero-body">
           <div style="text-align: center;">
-            <img src="index/framework.png" alt="MY ALT TEXT" style="width: 100%; height: auto;">
+            <img src="index/framework.png" alt="MRBTP Framework" class="zoomable" id="frameworkImg" style="width: 100%; height: auto;">
           </div>
       <h2 class="subtitle has-text-justified">
 <!--        Our <b>index</b> can generate behavior trees for each robot in accordance with the team goal..-->
@@ -679,6 +1284,32 @@ mjx-c.mjx-c25::before {
   </div>
 </section>
 <!-- End teaser image -->
+
+<!-- ===== Highlights / Core Contributions ===== -->
+<section class="section mrbtp-highlights" id="highlights">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Highlights</h2>
+    <div class="hl-grid">
+      <div class="hl-card hl-card-blue">
+        <div class="hl-badge">01</div>
+        <h3>Cross-Tree Expansion</h3>
+        <p>The <strong>first sound &amp; complete</strong> multi-robot BT planning algorithm. A condition expanded in one robot's tree can be further expanded by all robots — so one robot may act to satisfy another's precondition, enabling true multi-tree coordination of <em>heterogeneous</em> actions.</p>
+      </div>
+      <div class="hl-card hl-card-green">
+        <div class="hl-badge">02</div>
+        <h3>Intention Sharing</h3>
+        <p>For <em>homogeneous</em> actions, backup structures guarantee fault tolerance. During execution each robot broadcasts its current action, letting others predict effects via <strong>belief spaces</strong> — eliminating redundant work and turning serial trees into parallel execution.</p>
+      </div>
+      <div class="hl-card hl-card-orange">
+        <div class="hl-badge">03</div>
+        <h3>Subtree Pre-Planning <span class="hl-tag">LLM Plugin</span></h3>
+        <p>An optional plugin: when an LLM is available, it reasons goal-related actions per robot that are pre-planned into <strong>long-horizon subtrees</strong>. This speeds up planning, cuts communication overhead, and boosts collaboration efficiency.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Highlights -->
+
 
 <!-- Image carousel -->
 <!--<section class="hero is-small">-->
@@ -730,14 +1361,14 @@ mjx-c.mjx-c25::before {
 <!-- End image carousel -->
 
 <!-- Paper abstract -->
-<section class="section hero is-light">
+<section class="section hero is-light" id="abstract">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-              Multi-robot task planning and collaboration are critical challenges in robotics. While Behavior Trees (BTs) have been established as a popular control architecture and are plannable for a single robot, the development of effective multi-robot BT planning algorithms remains challenging due to the complexity of coordinating diverse action spaces. We propose the Multi-Robot Behavior Tree Planning (MRBTP) algorithm, with theoretical guarantees of both soundness and completeness. MRBTP features cross-tree expansion to coordinate heterogeneous actions across different BTs to achieve the team's goal. For homogeneous actions, we retain backup structures among BTs to ensure robustness and prevent redundant execution through intention sharing. While MRBTP is capable of generating BTs for both homogeneous and heterogeneous robot teams, its efficiency can be further improved. We then propose an optional plugin for MRBTP when Large Language Models (LLMs) are available to reason goal-related actions for each robot. These relevant actions can be pre-planned to form long-horizon subtrees, significantly enhancing the planning speed and collaboration efficiency of MRBTP. We evaluate our algorithm in warehouse management and everyday service scenarios. Results demonstrate MRBTP's robustness and execution efficiency under varying settings, as well as the ability of the pre-trained LLM to generate effective task-specific subtrees for MRBTP.
+              Multi-robot task planning and collaboration are critical challenges in robotics. While <em>Behavior Trees</em> (BTs) have been established as a popular control architecture and are plannable for a single robot, the development of effective <strong>multi-robot BT planning algorithms</strong> remains challenging due to the complexity of coordinating diverse action spaces. We propose the <strong>Multi-Robot Behavior Tree Planning (MRBTP)</strong> algorithm, with theoretical guarantees of both <mark class="hl-blue">soundness and completeness</mark>. MRBTP features <strong>cross-tree expansion</strong> to coordinate heterogeneous actions across different BTs to achieve the team's goal. For homogeneous actions, we retain backup structures among BTs to ensure robustness and prevent redundant execution through <mark class="hl-green">intention sharing</mark>. While MRBTP is capable of generating BTs for both homogeneous and heterogeneous robot teams, its efficiency can be further improved. We then propose an <strong>optional plugin</strong> for MRBTP when <em>Large Language Models</em> (LLMs) are available to reason goal-related actions for each robot. These relevant actions can be pre-planned to form <mark class="hl-orange">long-horizon subtrees</mark>, significantly enhancing the planning speed and collaboration efficiency of MRBTP. We evaluate our algorithm in <strong>warehouse management</strong> and <strong>everyday service</strong> scenarios. Results demonstrate MRBTP's robustness and execution efficiency under varying settings, as well as the ability of the pre-trained LLM to generate effective task-specific subtrees for MRBTP.
           </p>
         </div>
       </div>
@@ -746,8 +1377,64 @@ mjx-c.mjx-c25::before {
 </section>
 <!-- End paper abstract -->
 
+<!-- ===== Key Results ===== -->
+<section class="section mrbtp-results" id="results">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Key Results</h2>
+
+    <!-- Headline stat cards -->
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-num stat-blue" data-val="100" data-suffix="%">100%</div>
+        <div class="stat-label">Success rate across <em>all</em> homogeneity settings, vs. as low as 4.6% for the BT-Expansion baseline.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num stat-green" data-val="50" data-prefix="~" data-suffix="%">~50%</div>
+        <div class="stat-label">Goal-achievement chance retained even at a <strong>50% per-action failure</strong> rate (8 robots, full homogeneity).</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num stat-orange" data-val="21" data-suffix="×">21&times;</div>
+        <div class="stat-label">Fewer expanded conditions with subtree pre-planning + feedback (8033 &rarr; 384 at &alpha;=1), turning a timeout into <strong>3.7&nbsp;s</strong>.</div>
+      </div>
+    </div>
+
+    <!-- Planning efficiency table -->
+    <div class="result-card">
+      <h3 class="result-title">Planning Efficiency with Pre-Planned Subtrees</h3>
+      <p class="result-sub">Warehouse / home-service tasks. <strong>EC</strong> = expanded conditions, <strong>PT</strong> = planning time. Avg. LLM response 4.2&nbsp;s per call.</p>
+      <div class="table-wrap">
+        <table class="mrbtp-table">
+          <thead>
+            <tr><th>Homogeneity</th><th>Subtree</th><th>Feedback</th><th>EC</th><th>PT (s)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td rowspan="3">&alpha; = 1</td><td>&ndash;</td><td>&ndash;</td><td>8033.3</td><td class="td-warn">Timeout</td></tr>
+            <tr><td>&#10003;</td><td>&ndash;</td><td>998.1</td><td>12.4</td></tr>
+            <tr class="row-best"><td>&#10003;</td><td>&#10003;</td><td>384.3</td><td>3.7</td></tr>
+            <tr><td rowspan="3">&alpha; &asymp; 0.5</td><td>&ndash;</td><td>&ndash;</td><td>7882.5</td><td class="td-warn">Timeout</td></tr>
+            <tr><td>&#10003;</td><td>&ndash;</td><td>623.8</td><td>7.2</td></tr>
+            <tr class="row-best"><td>&#10003;</td><td>&#10003;</td><td>267.9</td><td>2.6</td></tr>
+            <tr><td rowspan="3">&alpha; = 0</td><td>&ndash;</td><td>&ndash;</td><td>2695.5</td><td>20.2</td></tr>
+            <tr><td>&#10003;</td><td>&ndash;</td><td>576.6</td><td>5.6</td></tr>
+            <tr class="row-best"><td>&#10003;</td><td>&#10003;</td><td>146.8</td><td>1.4</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Eval setup chips -->
+    <div class="setup-row">
+      <div class="setup-chip"><span class="chip-k">Scenarios</span> Warehouse Management (Minigrid) &middot; Home Service (VirtualHome)</div>
+      <div class="setup-chip"><span class="chip-k">Scale</span> Up to 8 robots &middot; hundreds of actions</div>
+      <div class="setup-chip"><span class="chip-k">LLMs</span> GPT-3.5-turbo &middot; GPT-4o-mini &middot; GPT-4o</div>
+    </div>
+  </div>
+</section>
+<!-- End Key Results -->
+
+
 <!-- Image carousel -->
-<section class="hero is-small">
+<section class="hero is-small" id="slides">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <h2 class="title is-3">Slides</h2>
@@ -767,7 +1454,11 @@ mjx-c.mjx-c25::before {
   <section class="section hero is-light" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>
+      <div class="bibtex-wrap">
+        <button class="copy-btn" id="copyBib" type="button" aria-label="Copy BibTeX">
+          <span class="copy-ico">⧉</span><span class="copy-txt">Copy</span>
+        </button>
+        <pre><code id="bibtexCode">
           @inproceedings{cai2025mrbtp,
             title={Mrbtp: Efficient multi-robot behavior tree planning and collaboration},
             author={Cai, Yishuai and Chen, Xinglin and Cai, Zhongxuan and Mao, Yunxin and Li, Minglong and Yang, Wenjing and Wang, Ji},
@@ -778,6 +1469,7 @@ mjx-c.mjx-c25::before {
             year={2025}
           }
       </code></pre>
+      </div>
     </div>
 </section>
 <!--End BibTex citation -->
@@ -806,6 +1498,152 @@ mjx-c.mjx-c25::before {
 <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
 
     <!-- End of Statcounter Code -->
+
+<!-- ===== Back-to-top button ===== -->
+<button id="backToTop" type="button" aria-label="Back to top">↑</button>
+
+<!-- ===== Image lightbox ===== -->
+<div id="lightbox" aria-hidden="true">
+  <span id="lightboxClose" aria-label="Close">&times;</span>
+  <img id="lightboxImg" src="" alt="Zoomed figure">
+</div>
+
+<!-- ===== Interaction enhancements ===== -->
+<script>
+(function () {
+  // 1) Scroll progress bar
+  var bar = document.getElementById('scrollProgress');
+  // 2) Sticky nav show/hide + scroll-spy
+  var nav = document.getElementById('mrbtpNav');
+  var navLinks = nav ? Array.prototype.slice.call(nav.querySelectorAll('a[data-target]')) : [];
+  var sections = navLinks.map(function (a) { return document.getElementById(a.getAttribute('data-target')); });
+  var backTop = document.getElementById('backToTop');
+
+  function onScroll() {
+    var st = window.pageYOffset || document.documentElement.scrollTop;
+    var h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    if (bar) bar.style.width = (h > 0 ? (st / h) * 100 : 0) + '%';
+
+    if (nav) nav.classList.toggle('nav-visible', st > 420);
+    if (backTop) backTop.classList.toggle('show', st > 600);
+
+    // scroll-spy
+    var cur = '', mid = st + window.innerHeight * 0.35;
+    sections.forEach(function (sec, i) {
+      if (sec && sec.offsetTop <= mid) cur = navLinks[i].getAttribute('data-target');
+    });
+    navLinks.forEach(function (a) {
+      a.classList.toggle('active', a.getAttribute('data-target') === cur);
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+
+  // 3) Smooth anchor scrolling
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href').slice(1);
+      var el = id ? document.getElementById(id) : null;
+      if (el) {
+        e.preventDefault();
+        var y = el.getBoundingClientRect().top + window.pageYOffset - 64;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    });
+  });
+  if (backTop) backTop.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // 4) Reveal-on-scroll animation
+  var revealEls = document.querySelectorAll('.hl-card, .stat-card, .result-card, .setup-chip, #abstract .content');
+  if ('IntersectionObserver' in window) {
+    revealEls.forEach(function (el) { el.classList.add('reveal'); });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(function (el) { io.observe(el); });
+  }
+
+  // 5) Count-up for stat numbers
+  function countUp(el) {
+    var raw = el.getAttribute('data-val');
+    var num = parseFloat(raw);
+    var suffix = el.getAttribute('data-suffix') || '';
+    var prefix = el.getAttribute('data-prefix') || '';
+    var dur = 1100, t0 = null;
+    function step(ts) {
+      if (!t0) t0 = ts;
+      var p = Math.min((ts - t0) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      var v = num * eased;
+      var disp = (raw.indexOf('.') >= 0) ? v.toFixed(1) : Math.round(v).toString();
+      el.textContent = prefix + disp + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var statNums = document.querySelectorAll('.stat-num[data-val]');
+  if ('IntersectionObserver' in window && statNums.length) {
+    var io2 = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { countUp(en.target); io2.unobserve(en.target); }
+      });
+    }, { threshold: 0.5 });
+    statNums.forEach(function (el) { io2.observe(el); });
+  }
+
+  // 6) BibTeX copy
+  var copyBtn = document.getElementById('copyBib');
+  var bibCode = document.getElementById('bibtexCode');
+  if (copyBtn && bibCode) {
+    copyBtn.addEventListener('click', function () {
+      var text = bibCode.textContent.replace(/^\s*\n/, '').trimEnd();
+      var done = function () {
+        copyBtn.classList.add('copied');
+        copyBtn.querySelector('.copy-txt').textContent = 'Copied!';
+        setTimeout(function () {
+          copyBtn.classList.remove('copied');
+          copyBtn.querySelector('.copy-txt').textContent = 'Copy';
+        }, 1600);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, done);
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = text; document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta); done();
+      }
+    });
+  }
+
+  // 7) Framework image lightbox
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lightboxImg');
+  var lbClose = document.getElementById('lightboxClose');
+  document.querySelectorAll('img.zoomable').forEach(function (img) {
+    img.addEventListener('click', function () {
+      if (!lb || !lbImg) return;
+      lbImg.src = img.src;
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden', 'false');
+    });
+  });
+  function closeLb() {
+    if (!lb) return;
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden', 'true');
+  }
+  if (lb) lb.addEventListener('click', function (e) { if (e.target !== lbImg) closeLb(); });
+  if (lbClose) lbClose.addEventListener('click', closeLb);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLb(); });
+
+  onScroll();
+})();
+</script>
 
 <!-- Google tag (gtag.js) -->
 <script async="" src="index/js"></script>

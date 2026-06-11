@@ -11,6 +11,9 @@
   <title>HBTP · Heuristic Behavior Tree Planning with LLM Reasoning</title>
 </head>
 <body>
+  <!-- scroll progress bar -->
+  <div id="scrollProgress"></div>
+
   <!-- ======================== TOP NAV ======================== -->
   <header class="topbar">
     <div class="wrap topbar-inner">
@@ -46,7 +49,7 @@
         </h1>
 
         <p class="authors">
-          <span class="a">Yishuai&nbsp;Cai</span>,
+          <span class="a"><a href="https://caiyishuai.github.io/" target="_blank" rel="noopener">Yishuai&nbsp;Cai</a></span>,
           <span class="a">Xinglin&nbsp;Chen<sup>†</sup></span>,
           <span class="a">Yunxin&nbsp;Mao</span>,
           <span class="a">Minglong&nbsp;Li<sup>†</sup></span>,
@@ -121,7 +124,7 @@
           <h2>An overview of HBTP</h2>
         </header>
         <figure class="figure-card">
-          <img src="images/framework.png" alt="HBTP framework overview." loading="lazy" />
+          <img src="images/framework.png" alt="HBTP framework overview." class="zoomable" loading="lazy" />
           <figcaption>
             <strong>(1)</strong> Before HBTP, a heuristic path reasoned by the LLM constructs a heuristic action
             indicator. During HBTP, condition nodes in the BT are ranked and expanded based on their heuristic
@@ -143,8 +146,15 @@
           <p class="lead">Three difficulty tiers — from a single goal to compositional logical objectives.</p>
         </header>
 
+        <!-- ===== Difficulty switcher ===== -->
+        <div class="demo-tabs" role="tablist" aria-label="RoboWaiter difficulty">
+          <button class="demo-tab is-active level-easy" role="tab" aria-selected="true" aria-controls="rw-easy" id="rwtab-easy" data-target="rw-easy" type="button">Easy</button>
+          <button class="demo-tab level-medium" role="tab" aria-selected="false" aria-controls="rw-medium" id="rwtab-medium" data-target="rw-medium" type="button">Medium</button>
+          <button class="demo-tab level-hard" role="tab" aria-selected="false" aria-controls="rw-hard" id="rwtab-hard" data-target="rw-hard" type="button">Hard</button>
+        </div>
+
         <!-- ===== Easy ===== -->
-        <article class="demo-card">
+        <article class="demo-card is-active" id="rw-easy" role="tabpanel" aria-labelledby="rwtab-easy">
           <header class="demo-head">
             <span class="level-badge level-easy">Easy Level</span>
             <h3>IsClean(Table1) <span class="op">∧</span> On(Yogurt, Table1)</h3>
@@ -173,7 +183,7 @@
         </article>
 
         <!-- ===== Medium ===== -->
-        <article class="demo-card">
+        <article class="demo-card" id="rw-medium" role="tabpanel" aria-labelledby="rwtab-medium" hidden>
           <header class="demo-head">
             <span class="level-badge level-medium">Medium Level</span>
             <h3>Closed(Curtain) <span class="op">∧</span> ( In(Coffee, WaterStation) <span class="op">∨</span> In(Yogurt, WaterStation) )</h3>
@@ -202,7 +212,7 @@
         </article>
 
         <!-- ===== Hard ===== -->
-        <article class="demo-card">
+        <article class="demo-card" id="rw-hard" role="tabpanel" aria-labelledby="rwtab-hard" hidden>
           <header class="demo-head">
             <span class="level-badge level-hard">Hard Level</span>
             <h3>Active(HallLight) <span class="op">∧</span> On(Dessert, Bar) <span class="op">∧</span> On(VacuumCup, Bar)</h3>
@@ -267,9 +277,45 @@
     </div>
   </footer>
 
+  <!-- back-to-top -->
+  <button id="backToTop" type="button" aria-label="Back to top">↑</button>
+
+  <!-- image lightbox -->
+  <div id="lightbox" aria-hidden="true">
+    <span id="lightboxClose" aria-label="Close">&times;</span>
+    <img id="lightboxImg" src="" alt="Zoomed figure" />
+  </div>
+
   <script>
     /* Year */
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* RoboWaiter difficulty tabs */
+    const demoTabs = document.querySelectorAll('.demo-tab');
+    const demoPanels = document.querySelectorAll('.demo-card[role="tabpanel"]');
+    demoTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.target;
+        demoTabs.forEach((t) => {
+          const active = t === tab;
+          t.classList.toggle('is-active', active);
+          t.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        demoPanels.forEach((p) => {
+          const active = p.id === target;
+          p.classList.toggle('is-active', active);
+          if (active) {
+            p.removeAttribute('hidden');
+            const v = p.querySelector('video');
+            if (v) { v.currentTime = 0; v.play().catch(() => {}); }
+          } else {
+            p.setAttribute('hidden', '');
+            const v = p.querySelector('video');
+            if (v) v.pause();
+          }
+        });
+      });
+    });
 
     /* Copy BibTeX */
     const cb = document.querySelector('.copy-btn');
@@ -294,11 +340,49 @@
       });
     });
 
-    /* Topbar shadow on scroll */
+    /* Topbar shadow + scroll progress + scroll-spy + back-to-top */
     const tb = document.querySelector('.topbar');
-    const onScroll = () => tb.classList.toggle('is-scrolled', window.scrollY > 6);
+    const bar = document.getElementById('scrollProgress');
+    const backTop = document.getElementById('backToTop');
+    const navLinks = Array.prototype.slice.call(document.querySelectorAll('.topnav a[href^="#"]'));
+    const spySections = navLinks.map((a) => document.getElementById(a.getAttribute('href').slice(1)));
+    const onScroll = () => {
+      const st = window.scrollY || document.documentElement.scrollTop;
+      if (tb) tb.classList.toggle('is-scrolled', st > 6);
+
+      const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      if (bar) bar.style.width = (h > 0 ? (st / h) * 100 : 0) + '%';
+
+      if (backTop) backTop.classList.toggle('show', st > 500);
+
+      let cur = '';
+      const mid = st + window.innerHeight * 0.32;
+      spySections.forEach((sec, i) => {
+        if (sec && sec.offsetTop <= mid) cur = navLinks[i].getAttribute('href').slice(1);
+      });
+      navLinks.forEach((a) => {
+        a.classList.toggle('active', a.getAttribute('href').slice(1) === cur);
+      });
+    };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+
+    if (backTop) backTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    /* Reveal-on-scroll */
+    const revealEls = document.querySelectorAll('.block-head, .figure-card, .demo-card, .codeblock, .metric-card, .video-frame');
+    if ('IntersectionObserver' in window && revealEls.length) {
+      revealEls.forEach((el) => el.classList.add('reveal'));
+      const ro = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) { en.target.classList.add('in'); ro.unobserve(en.target); }
+        });
+      }, { threshold: 0.12 });
+      revealEls.forEach((el) => ro.observe(el));
+    }
 
     /* Lazy autoplay videos when in viewport */
     if ('IntersectionObserver' in window) {
@@ -311,6 +395,28 @@
       }, { threshold: 0.4 });
       document.querySelectorAll('.demo-video video').forEach((v) => io.observe(v));
     }
+
+    /* Framework image lightbox */
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightboxImg');
+    const lbClose = document.getElementById('lightboxClose');
+    const openLb = (src) => {
+      if (!lb || !lbImg) return;
+      lbImg.src = src;
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden', 'false');
+    };
+    const closeLb = () => {
+      if (!lb) return;
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden', 'true');
+    };
+    document.querySelectorAll('img.zoomable').forEach((img) => {
+      img.addEventListener('click', () => openLb(img.src));
+    });
+    if (lb) lb.addEventListener('click', (e) => { if (e.target !== lbImg) closeLb(); });
+    if (lbClose) lbClose.addEventListener('click', closeLb);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLb(); });
   </script>
 </body>
 </html>

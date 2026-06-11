@@ -231,6 +231,13 @@ code, pre {
   display: inline-block;
 }
 .author.co-first { font-weight: 700; color: var(--ink); }
+.author a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color .18s ease, border-color .18s ease;
+}
+.author a:hover { color: var(--brand); border-bottom-color: var(--brand); }
 .authors .sep { color: var(--muted); margin: 0 .15rem 0 -.05rem; }
 /* allow optional logical break point between author groups */
 .authors .line-break {
