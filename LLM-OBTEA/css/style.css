@@ -560,6 +560,141 @@ body.lang-zh .instruction { font-style: normal; }
 .footer a { color: var(--ink-soft); font-weight: 500; }
 .footer a:hover { color: var(--brand); }
 
+/* -------------- Interaction enhancements -------------- */
+/* scroll progress bar */
+#scrollProgress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px; width: 0;
+  background: var(--grad);
+  z-index: 60;
+  transition: width .08s linear;
+}
+
+/* nav scroll-spy active link */
+.nav-links a.active {
+  color: var(--ink);
+  background: rgba(79, 70, 229, .10);
+  font-weight: 600;
+}
+
+/* reveal-on-scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .6s cubic-bezier(.2,.7,.2,1), transform .6s cubic-bezier(.2,.7,.2,1);
+  will-change: opacity, transform;
+}
+.reveal.in { opacity: 1; transform: none; }
+
+/* hero entrance */
+.hero .eyebrow,
+.hero .hero-title,
+.hero .authors,
+.hero .affiliation,
+.hero .note,
+.hero .cta-row,
+.hero .hero-figure {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: heroIn .7s cubic-bezier(.2,.7,.2,1) forwards;
+}
+.hero .hero-title  { animation-delay: .06s; }
+.hero .authors     { animation-delay: .12s; }
+.hero .affiliation { animation-delay: .16s; }
+.hero .note        { animation-delay: .20s; }
+.hero .cta-row     { animation-delay: .24s; }
+.hero .hero-figure { animation-delay: .32s; }
+@keyframes heroIn { to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .hero .eyebrow, .hero .hero-title, .hero .authors,
+  .hero .affiliation, .hero .note, .hero .cta-row, .hero .hero-figure {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+/* focus ring for interactive elements */
+.btn:focus-visible,
+.copy-btn:focus-visible,
+.tab:focus-visible,
+.lang-btn:focus-visible,
+.nav-links a:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+/* back-to-top */
+#backToTop {
+  position: fixed;
+  right: 22px; bottom: 22px;
+  z-index: 55;
+  width: 46px; height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--brand);
+  font-size: 1.25rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px) scale(.92);
+  transition: opacity .25s ease, transform .25s ease, visibility .25s ease, background .2s ease, color .2s ease;
+}
+#backToTop.show { opacity: 1; visibility: visible; transform: none; }
+#backToTop:hover { background: var(--brand); color: #fff; border-color: var(--brand); transform: translateY(-2px); }
+
+/* zoomable figures */
+.hero-figure img,
+.figure-card img,
+.tree img { cursor: zoom-in; transition: transform .25s ease; }
+.figure-card:hover img { transform: scale(1.006); }
+
+/* lightbox */
+#lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3vw;
+  background: rgba(11, 16, 32, .84);
+  cursor: zoom-out;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .25s ease, visibility .25s ease;
+}
+#lightbox.open { opacity: 1; visibility: visible; }
+#lightbox img {
+  max-width: 96vw;
+  max-height: 92vh;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .5);
+  transform: scale(.97);
+  transition: transform .25s ease;
+}
+#lightbox.open img { transform: scale(1); }
+#lightboxClose {
+  position: fixed;
+  top: 18px; right: 24px;
+  color: #fff;
+  font-size: 2.2rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: .85;
+  transition: opacity .2s ease;
+}
+#lightboxClose:hover { opacity: 1; }
+
 /* -------------- Responsive tweaks -------------- */
 @media (max-width: 640px) {
   .hero { padding: 56px 0 32px; }
@@ -573,7 +708,8 @@ body.lang-zh .instruction { font-style: normal; }
 
 /* -------------- Print -------------- */
 @media print {
-  .navbar, .footer, .copy-btn, .cta-row, .tabs, .lang-switch { display: none !important; }
+  .navbar, .footer, .copy-btn, .cta-row, .tabs, .lang-switch,
+  #scrollProgress, #backToTop, #lightbox { display: none !important; }
   .section { padding: 24px 0; }
   body { background: #fff; }
 }
